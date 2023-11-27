@@ -63,6 +63,7 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 * Kedua, kami juga menggunakan *library dart pbp_django_auth* untuk mengimplementasikan *authentication* dengan *cookie*.
 
 * Ketiga, kita juga membuat tampilan dengan memakai *widget* pada Flutter yang terintegrasi dengan *API Django* yang menggunakan *event-handling* dan *asynchronous programming* agar pengalaman *user* menjadi lebih menarik dan interaktif. 
+<br>
 
 ## Berita Acara
-ristek.link/berita-acara-e02-2324
+[LINK BERITA ACARA](ristek.link/berita-acara-e02-2324)
