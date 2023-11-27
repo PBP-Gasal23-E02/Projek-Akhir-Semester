@@ -66,4 +66,4 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 <br>
 
 ## Berita Acara
-[LINK BERITA ACARA](ristek.link/berita-acara-e02-2324)
+[LINK BERITA ACARA](https://docs.google.com/spreadsheets/d/1n_Jr3YN25hIqkiWLAXWucOkXikMt0hyNhiT75TY3zc8/edit#gid=226615022)
