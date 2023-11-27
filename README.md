@@ -13,7 +13,6 @@
 > **GourmetLabs** adalah aplikasi yang menyediakan informasi, resep, dan pengalaman membaca yang menarik tentang budaya kuliner dari berbagai negara serta memungkinkan pengguna untuk menikmati bacaan eksklusif terkait kuliner.
 <hr>
 
-
 ## About GourmetLabs
 Bayangkan kita menjelajahi suatu aplikasi di mana kita dengan mudah menemukan kekayaan budaya kuliner yang tidak terbatas. Selamat datang di GourmetLabs, portal kuliner yang menghadirkan kekayaan budaya kuliner. Didukung dengan tampilan antarmuka yang ramah pengguna, GourmetLabs memberikan pengalaman membaca mengenai informasi kuliner yang menarik dan menyenangkan.
 
@@ -22,6 +21,7 @@ Di GourmetLabs, Anda akan menemukan informasi bacaan terkait cooking books. Mula
 Pengguna yang mendaftarkan akunnya sebagai Admin dapat menambahkan informasi bacaan terkait cooking books yang dimilikinya di website GourmetLabs. Hal ini memungkinkan pembaca untuk menikmati bacaan terkait kuliner secara eksklusif di GourmetLabs. Pembaca juga dapat menulis ulasan dan feedback terkait buku yang dipublikasikan.
 
 GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga diharapkan dapat meningkatkan minat membaca pada masyarakat. Tak hanya itu, GourmetLabs juga dapat diakses melalui berbagai macam perangkat, mulai dari desktop pc, laptop, tablet, hingga smartphone. Hal ini memungkinkan pengguna dapat mengakses website GourmetLabs di manapun dan kapanpun.
+<br>
 
 ## List of Modules, Pages, and Data Sources
 **1. Halaman *Authentication*** 
@@ -47,6 +47,7 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 
 **8. Halaman Informasi *User***
 > Menampilkan informasi user, di antaranya adalah nama pengguna, *wishlist* buku yang ingin dibaca, daftar buku masak favorit atau *bookmark*, status pengguna (Admin atau Pembaca), *logout*, dan lainnya. 
+<br>
 
 ## User Roles and Their Descriptions
 **1. Pembaca**
@@ -54,5 +55,14 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 
 **2. Admin**
 > Merilis atau menambahkan buku.
+<br>
 
 ## Alur Pengintegrasian dengan *Web Service* untuk Terhubung dengan Aplikasi Web yang Sudah Dibuat Saat Proyek Tengah Semester
+* Pertama, kami mengubah atau memodifikasi modul-modul yang ada pada Proyek Tengah Semester agar dapat mengimplementasikan *REST API* menggunakan *serializers* dan *JsonResponse* agar tiap data pada server Django. 
+
+* Kedua, kami juga menggunakan *library dart pbp_django_auth* untuk mengimplementasikan *authentication* dengan *cookie*.
+
+* Ketiga, kita juga membuat tampilan dengan memakai *widget* pada Flutter yang terintegrasi dengan *API Django* yang menggunakan *event-handling* dan *asynchronous programming* agar pengalaman *user* menjadi lebih menarik dan interaktif. 
+
+## Berita Acara
+ristek.link/berita-acara-e02-2324
