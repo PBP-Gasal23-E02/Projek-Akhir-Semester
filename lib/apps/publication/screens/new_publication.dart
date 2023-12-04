@@ -9,6 +9,8 @@ import 'package:gourmet_labs/screens/menu.dart';
 import 'package:gourmet_labs/widgets/left_drawer.dart';
 import 'package:gourmet_labs/widgets/menu_card.dart';
 
+List<Items> items = [];
+
 class PublicationFormPage extends StatefulWidget{
   const PublicationFormPage({super.key});
 
@@ -226,7 +228,7 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
                         if (_formKey.currentState!.validate()) {
                           final response = await request.postJson(
                           // TODO: ubah routing
-                          "https://erstevan-laurel-tugas.pbp.cs.ui.ac.id/create-flutter/",
+                          "https://127.0.0.1:8000/publication/new-publication-flutter/",
                           jsonEncode(<String, String>{
                               'author': _author,
                               'title': _title,
@@ -239,7 +241,7 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
                           if (response['status'] == 'success') {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                              content: Text("Produk baru berhasil disimpan!"),
+                              content: Text("New item succesfully added!"),
                               ));
                               Navigator.pushReplacement(
                                   context,
@@ -249,7 +251,7 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
                                   content:
-                                      Text("Terdapat kesalahan, silakan coba lagi."),
+                                      Text("There is an error, please try again."),
                               ));
                           }
                         }
