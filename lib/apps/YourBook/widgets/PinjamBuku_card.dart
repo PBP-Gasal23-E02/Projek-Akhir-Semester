@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 // import 'package:inventory_flutter/screens/list_item.dart';
 // import 'package:inventory_flutter/screens/login.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/list_PinjamBuku.dart';
+import 'package:gourmet_labs/apps/YourBook/screens/user_PinjamBuku.dart';
+import 'package:gourmet_labs/apps/YourBook/screens/PinjamBukulist_form.dart';
 
 class ShopItem {
   final String name;
@@ -35,13 +37,13 @@ class ShopCard extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const PinjamBukuListPage(),
+                  builder: (context) => const InventoryFormPage(),
                 ));
           } else if (item.name == "Lihat Item berdasarkan user") {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const PinjamBukuListPage(),
+                  builder: (context) => const UserPage(),
                 ));
           } else if (item.name == "Lihat Item") {
             Navigator.pushReplacement(
