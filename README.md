@@ -64,8 +64,11 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 
 * Ketiga, kita juga membuat tampilan dengan memakai *widget* pada Flutter yang terintegrasi dengan *API Django* yang menggunakan *event-handling* dan *asynchronous programming* agar pengalaman *user* menjadi lebih menarik dan interaktif. 
 <br>
+<br>
 
-[![Build status](https://build.appcenter.ms/v0.1/apps/c0066952-3bf4-4cab-ae2d-ea2272cb636e/branches/main/badge)](https://appcenter.ms)
-link app : install.appcenter.ms/users/aaron.kwek-ui.ac.id/apps/gourmetlabs/distribution_groups/public 
+[![Staging](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/staging.yml/badge.svg)](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/staging.yml) [![Pre-Release](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/pre-release.yml/badge.svg)](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/pre-release.yml) [![Release](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/release.yml) [![Build status](https://build.appcenter.ms/v0.1/apps/c0066952-3bf4-4cab-ae2d-ea2272cb636e/branches/main/badge)](https://appcenter.ms)
+<br>
+link app : install.appcenter.ms/users/aaron.kwek-ui.ac.id/apps/gourmetlabs/distribution_groups/public
+<br> 
 ## Berita Acara
 [LINK BERITA ACARA](https://docs.google.com/spreadsheets/d/1n_Jr3YN25hIqkiWLAXWucOkXikMt0hyNhiT75TY3zc8/edit#gid=226615022)
