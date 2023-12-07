@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:inventory_flutter/screens/itemlist_form.dart';
-// import 'package:inventory_flutter/screens/list_item.dart';
-// import 'package:inventory_flutter/screens/login.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/list_PinjamBuku.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/user_PinjamBuku.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/PinjamBukulist_form.dart';
@@ -52,26 +49,6 @@ class ShopCard extends StatelessWidget {
                   builder: (context) => const BukuListPage(),
                 ));
           }
-          // tambahkan else if baru seperti di bawah ini
-          // else if (item.name == "Logout") {
-          //         final response = await request.logout(
-          //             "https://aaron-kwek-tugas.pbp.cs.ui.ac.id/auth/logout/");
-          //         String message = response["message"];
-          //         if (response['status']) {
-          //           String uname = response["username"];
-          //           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //             content: Text("$message Sampai jumpa, $uname."),
-          //           ));
-          //           Navigator.pushReplacement(
-          //             context,
-          //             MaterialPageRoute(builder: (context) => const LoginPage()),
-          //           );
-          //         } else {
-          //           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //             content: Text("$message"),
-          //           ));
-          //         }
-          // }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text

@@ -60,7 +60,7 @@ class ShopCard extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const ProductPage()));
           } else if (item.name == "Logout") {
             final response =
-                await request.logout("http://127.0.0.1:8000/auth/logout/");
+                await request.logout("https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/auth/logout/");
             String message = response["message"];
             if (response['status']) {
               String uname = response["username"];
