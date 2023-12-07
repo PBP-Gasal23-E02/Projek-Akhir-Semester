@@ -33,23 +33,23 @@ class ShopCard extends StatelessWidget {
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
 
           // Navigate ke route yang sesuai (tergantung jenis tombol)
-          if (item.name == "Tambah Item") {
+          if (item.name == "Pinjam Buku") {
             Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const InventoryFormPage(),
                 ));
-          } else if (item.name == "Lihat Item berdasarkan user") {
+          } else if (item.name == "Buku yang anda pinjam") {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const UserPage(),
                 ));
-          } else if (item.name == "Lihat Item") {
+          } else if (item.name == "List buku") {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const PinjamBukuListPage(),
+                  builder: (context) => const BukuListPage(),
                 ));
           }
           // tambahkan else if baru seperti di bawah ini

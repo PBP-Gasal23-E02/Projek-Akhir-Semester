@@ -6,9 +6,9 @@ class YourBookPage extends StatelessWidget {
   YourBookPage({Key? key}) : super(key: key);
 
   final List<ShopItem> items = [
-    ShopItem("Lihat Item berdasarkan user", Icons.checklist, Colors.red),
-    ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.blue),
-    ShopItem("Lihat Item", Icons.logout, Colors.green),
+    ShopItem("Buku yang anda pinjam", Icons.book_outlined, Colors.red),
+    ShopItem("Pinjam Buku", Icons.my_library_add_rounded, Colors.blue),
+    ShopItem("List buku", Icons.my_library_books, Colors.green),
   ];
 
   @override
@@ -16,7 +16,7 @@ class YourBookPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Inventory Flutter',
+          'YourBook',
         ),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
