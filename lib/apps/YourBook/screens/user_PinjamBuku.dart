@@ -16,7 +16,7 @@ class _UserPageState extends State<UserPage> {
   Future<List<PinjamBuku>> fetchProduct(
       CookieRequest request, String filter) async {
     final response = await request.postJson(
-        "http://127.0.0.1:8000/YourBook/get-product-flutter/",
+        "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/YourBook/get-product-flutter/",
         jsonEncode(<String, String>{
           'name': 'dsa',
           'filter': filter,
