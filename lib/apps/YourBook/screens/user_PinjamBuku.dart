@@ -150,19 +150,23 @@ class _UserPageState extends State<UserPage> {
                                     "Petugas : ${snapshot.data![index].fields.petugas}"),
                                 const SizedBox(height: 10),
                                 Text(
-                                    "Durasi Pinjam : ${snapshot.data![index].fields.durasiPinjam}"),
+                                    "Durasi Pinjam : ${snapshot.data![index].fields.durasiPinjam} hari"),
                                 ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
+                                  onPressed: () async {
+
+                                    // Sending request to Django backend
+                                    final response = await request.postJson(
+                                    "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/YourBook/delete-flutter/",
+                                    jsonEncode(<String, String>{
+                                      'name': "fsa",
+                                      'id': snapshot.data![index].pk.toString(),
+                                    }));
+                                    Navigator.pushReplacement(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (context) => DetailsPage(
-                                          item: snapshot.data![index],
-                                        ),
-                                      ),
+                                      MaterialPageRoute(builder: (context) => const UserPage()),
                                     );
                                   },
-                                  child: Text("See Details"),
+                                  child: Text("Kembalikan"),
                                 )
                               ],
                             ),
