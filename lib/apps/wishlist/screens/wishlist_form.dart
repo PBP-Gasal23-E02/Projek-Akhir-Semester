@@ -3,26 +3,25 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:gourmet_labs/apps/wishlist/models/model_wishlist.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:gourmet_labs/screens/menu.dart';
-import 'package:gourmet_labs/widgets/left_drawer.dart';
-import 'package:gourmet_labs/widgets/menu_card.dart';
+import 'package:gourmet_labs/apps/wishlist/screens/menu_wishlist.dart';
+import 'package:gourmet_labs/apps/wishlist/widgets/left_drawer.dart';
 
 // A list to store items added through the form.
-List<Items> items = [];
+List<Wishlist> items = [];
 
-class ShopFormPage extends StatefulWidget {
-  const ShopFormPage({super.key});
+class WishlistFormPage extends StatefulWidget {
+  const WishlistFormPage({super.key});
 
   @override
-  State<ShopFormPage> createState() => _ShopFormPageState();
+  State<WishlistFormPage> createState() => _ShopFormPageState();
 }
 
-class _ShopFormPageState extends State<ShopFormPage> {
+class _ShopFormPageState extends State<WishlistFormPage> {
   final _formKey = GlobalKey<FormState>();
-  String _name = "";
-  int _price = 0;
+  String _title = "";
   String _description = "";
 
   @override
@@ -35,7 +34,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
         // Setting the title of the app bar
         title: const Center(
           child: Text(
-            'Add Item Form',
+            'Add Wishlist Form',
           ),
         ),
         backgroundColor: Colors.lightGreen,
@@ -53,47 +52,20 @@ class _ShopFormPageState extends State<ShopFormPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                  hintText: "Item Name",
-                  labelText: "Item Name",
+                  hintText: "Title Name",
+                  labelText: "Title Name",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
                 onChanged: (String? value) {
                   setState(() {
-                    _name = value!;
+                    _title = value!;
                   });
                 },
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return "Name cannot be empty!";
-                  }
-                  return null;
-                },
-              ),
-            ),
-            // Text input for Price
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Price",
-                  labelText: "Price",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                ),
-                onChanged: (String? value) {
-                  setState(() {
-                    _price = int.parse(value!);
-                  });
-                },
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return "Price cannot be empty!";
-                  }
-                  if (int.tryParse(value) == null) {
-                    return "Price must be a number!";
+                    return "Title cannot be empty!";
                   }
                   return null;
                 },
@@ -136,10 +108,9 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     if (_formKey.currentState!.validate()) {
                       // Send data to Django and wait for response
                       final response = await request.postJson(
-                          "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/create-flutter/",
+                          "http://127.0.0.1:8000/wishlist/create-flutter/",
                           jsonEncode(<String, String>{
-                            'name': _name,
-                            'price': _price.toString(),
+                            'title': _title,
                             'description': _description,
                           }));
                       if (response['status'] == 'success') {
@@ -150,7 +121,8 @@ class _ShopFormPageState extends State<ShopFormPage> {
                         ));
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => MyHomePage()),
+                          MaterialPageRoute(
+                              builder: (context) => MyWishlistPage()),
                         );
                       } else {
                         // Show error message if there is an issue

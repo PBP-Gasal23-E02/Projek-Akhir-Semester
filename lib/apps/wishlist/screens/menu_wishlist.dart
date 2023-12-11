@@ -1,39 +1,48 @@
+// Importing necessary packages for Flutter and custom widgets.
 import 'package:flutter/material.dart';
-import 'package:gourmet_labs/widgets/left_drawer.dart';
-import '../widgets/PinjamBuku_card.dart';
+import 'package:gourmet_labs/apps/wishlist/widgets/left_drawer.dart';
+import 'package:gourmet_labs/apps/wishlist/widgets/menu_card.dart';
 
-class YourBookPage extends StatelessWidget {
-  YourBookPage({Key? key}) : super(key: key);
+// A StatelessWidget representing the main page of the ScoobyMart application.
+class MyWishlistPage extends StatelessWidget {
+  // Constructor for the MyHomePage class.
+  MyWishlistPage({Key? key}) : super(key: key);
 
+  // List of ShopItem objects representing menu items.
   final List<ShopItem> items = [
-    ShopItem("Buku yang anda pinjam", Icons.book_outlined, Colors.red),
-    ShopItem("Pinjam Buku", Icons.my_library_add_rounded, Colors.blue),
-    ShopItem("List buku", Icons.my_library_books, Colors.green),
+    ShopItem("Show Your Wishlist", Icons.star, Colors.pink),
+    ShopItem("Add a Wishlist", Icons.bookmark_add_rounded, Colors.lightGreen),
+    ShopItem("Show All Wishlist", Icons.stars, Colors.blue),
   ];
 
   @override
   Widget build(BuildContext context) {
+    // Building the scaffold for the main page.
     return Scaffold(
+      // Setting up the app bar with a title and styling.
       appBar: AppBar(
         title: const Text(
-          'YourBook',
+          'Wishlist',
         ),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
+
+      // Including the LeftDrawer widget for navigation.
       drawer: const LeftDrawer(),
+
+      // Wrapping the body in a SingleChildScrollView for scrolling.
       body: SingleChildScrollView(
-        // Widget wrapper yang dapat discroll
+        // Padding to provide space around the content.
         child: Padding(
-          padding: const EdgeInsets.all(10.0), // Set padding dari halaman
+          padding: const EdgeInsets.all(10.0),
           child: Column(
-            // Widget untuk menampilkan children secara vertikal
             children: <Widget>[
+              // Text widget welcoming the user to ScoobyMart.
               const Padding(
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  'Kategori Buku Masak', // Text yang menandakan toko
+                  'Welcome to Wishlist!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -41,9 +50,9 @@ class YourBookPage extends StatelessWidget {
                   ),
                 ),
               ),
-              // Grid layout
+
+              // GridView displaying menu items using ShopCard widget.
               GridView.count(
-                // Container pada card kita.
                 primary: true,
                 padding: const EdgeInsets.all(20),
                 crossAxisSpacing: 10,
@@ -51,7 +60,6 @@ class YourBookPage extends StatelessWidget {
                 crossAxisCount: 3,
                 shrinkWrap: true,
                 children: items.map((ShopItem item) {
-                  // Iterasi untuk setiap item
                   return ShopCard(item);
                 }).toList(),
               ),

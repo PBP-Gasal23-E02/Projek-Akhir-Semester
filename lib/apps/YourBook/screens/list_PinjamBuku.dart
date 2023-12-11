@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:gourmet_labs/apps/YourBook/models/PinjamBuku.dart';
-import 'package:gourmet_labs/apps/YourBook/screens/one_PinjamBuku.dart';
+import 'package:gourmet_labs/apps/YourBook/models/Buku.dart';
 
-class PinjamBukuListPage extends StatefulWidget {
-  const PinjamBukuListPage({Key? key}) : super(key: key);
+class BukuListPage extends StatefulWidget {
+  const BukuListPage({Key? key}) : super(key: key);
 
   @override
-  _PinjamBukuListPageState createState() => _PinjamBukuListPageState();
+  _BukuListPageState createState() => _BukuListPageState();
 }
 
-class _PinjamBukuListPageState extends State<PinjamBukuListPage> {
-  Future<List<PinjamBuku>> fetchProduct() async {
+class _BukuListPageState extends State<BukuListPage> {
+  Future<List<Buku>> fetchProduct2() async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-    var url = Uri.parse('http://127.0.0.1:8000/YourBook/json/');
+    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/api/books/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -22,10 +21,10 @@ class _PinjamBukuListPageState extends State<PinjamBukuListPage> {
     // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));
     // melakukan konversi data json menjadi object Product
-    List<PinjamBuku> list_product = [];
+    List<Buku> list_product = [];
     for (var d in data) {
       if (d != null) {
-        list_product.add(PinjamBuku.fromJson(d));
+        list_product.add(Buku.fromJson(d));
       }
     }
     return list_product;
@@ -35,11 +34,11 @@ class _PinjamBukuListPageState extends State<PinjamBukuListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Item'),
+          title: const Text('Koleksi Buku'),
         ),
         // drawer: const LeftDrawer(),
         body: FutureBuilder(
-            future: fetchProduct(),
+            future: fetchProduct2(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
@@ -48,7 +47,7 @@ class _PinjamBukuListPageState extends State<PinjamBukuListPage> {
                   return const Column(
                     children: [
                       Text(
-                        "Tidak ada data item.",
+                        "Tidak ada data buku.",
                         style:
                             TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                       ),
@@ -67,7 +66,7 @@ class _PinjamBukuListPageState extends State<PinjamBukuListPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Judul : ${snapshot.data![index].fields.judulBuku}",
+                                  "Judul : ${snapshot.data![index].fields.title}",
                                   style: const TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
@@ -75,21 +74,10 @@ class _PinjamBukuListPageState extends State<PinjamBukuListPage> {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                    "Petugas : ${snapshot.data![index].fields.petugas}"),
+                                    "Author : ${snapshot.data![index].fields.authors}"),
                                 const SizedBox(height: 10),
                                 Text(
-                                    "durasi pinjam : ${snapshot.data![index].fields.durasiPinjam}"),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => DetailsPage(
-                                              item: snapshot.data![index],
-                                            ),
-                                          ));
-                                    },
-                                    child: Text("See Details"))
+                                    "bahasa : ${snapshot.data![index].fields.language}"),
                               ],
                             ),
                           ));
