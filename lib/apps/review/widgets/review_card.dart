@@ -4,29 +4,26 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:gourmet_labs/screens/list_item.dart';
-import 'package:gourmet_labs/screens/login.dart';
-import 'package:gourmet_labs/screens/gourmet_form.dart';
+import 'package:gourmet_labs/apps/review/screens/list_ReviewBuku.dart';
+import 'package:gourmet_labs/apps/review/screens/review_form.dart';
 
 // Defining a class to represent items in the shop.
 class ShopItem {
-  final String index;
   final String name;
   final IconData icon;
   final Color color;
 
   // Constructor for the ShopItem class.
-  ShopItem(this.index, this.name, this.icon, this.color);
+  ShopItem(this.name, this.icon, this.color);
 }
 
 // Defining a class to represent individual items in the shop.
 class Items {
-  final String name;
-  final int price;
-  final String description;
+  final String book;
+  final String review_cust;
 
   // Constructor for the Items class.
-  Items({required this.name, required this.price, required this.description});
+  Items({required this.book, required this.review_cust});
 }
 
 // A stateless widget representing a card in the shop.
@@ -38,7 +35,6 @@ class ShopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
     return Material(
       color: item.color,
       child: InkWell(
@@ -50,32 +46,14 @@ class ShopCard extends StatelessWidget {
                 content: Text("You have pressed the ${item.name} button!")));
 
           // Navigating to the appropriate route based on the button pressed.
-          if (item.name == "Add an Item") {
+          if (item.name == "Add Review Produk") {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ShopFormPage()),
             );
-          } else if (item.name == "Show Items") {
+          } else if (item.name == "Read Review") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ProductPage()));
-          } else if (item.name == "Logout") {
-            final response =
-                await request.logout("http://127.0.0.1:8001/auth/logout/");
-            String message = response["message"];
-            if (response['status']) {
-              String uname = response["username"];
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("$message Goodbye, $uname."),
-              ));
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("$message"),
-              ));
-            }
+                MaterialPageRoute(builder: (context) => const MyReviewPage()));
           }
         },
         child: Container(
@@ -84,11 +62,6 @@ class ShopCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  item.index,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
-                ),
                 Icon(
                   item.icon,
                   color: Colors.white,

@@ -6,6 +6,7 @@ import 'package:gourmet_labs/screens/gourmet_form.dart';
 import 'package:gourmet_labs/screens/gourmet_show.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/menu.dart';
 import 'package:gourmet_labs/apps/wishlist/screens/menu_wishlist.dart';
+import 'package:gourmet_labs/apps/review/screens/menu_ReviewBuku.dart';
 
 // A stateless widget representing the left drawer of the application.
 class LeftDrawer extends StatelessWidget {
@@ -105,7 +106,7 @@ class LeftDrawer extends StatelessWidget {
               // Route menu ke halaman produk
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ProductPage()),
+                MaterialPageRoute(builder: (context) => MyReviewPage()),
               );
             },
           ),
