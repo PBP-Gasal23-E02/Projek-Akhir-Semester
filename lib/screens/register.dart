@@ -113,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 }
                 // Sending registration request to Django backend
                 final response =
-                    await request.post("https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/auth/register/", {
+                    await request.post("http://127.0.0.1:8001/auth/register/", {
                   'username': username,
                   'password': password,
                 });
