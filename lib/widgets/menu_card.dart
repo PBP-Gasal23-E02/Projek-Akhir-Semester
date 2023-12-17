@@ -6,34 +6,27 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:gourmet_labs/screens/list_item.dart';
 import 'package:gourmet_labs/screens/login.dart';
-import 'package:gourmet_labs/screens/gourmet_form.dart';
+import 'package:gourmet_labs/screens/gourmet_view.dart';
 
-// Defining a class to represent items in the shop.
 class ShopItem {
-  final String index;
   final String name;
   final IconData icon;
   final Color color;
 
-  // Constructor for the ShopItem class.
-  ShopItem(this.index, this.name, this.icon, this.color);
+  ShopItem(this.name, this.icon, this.color);
 }
 
-// Defining a class to represent individual items in the shop.
 class Items {
   final String name;
   final int price;
   final String description;
 
-  // Constructor for the Items class.
   Items({required this.name, required this.price, required this.description});
 }
 
-// A stateless widget representing a card in the shop.
 class ShopCard extends StatelessWidget {
   final ShopItem item;
 
-  // Constructor for the ShopCard class.
   const ShopCard(this.item, {super.key});
 
   @override
@@ -43,24 +36,23 @@ class ShopCard extends StatelessWidget {
       color: item.color,
       child: InkWell(
         onTap: () async {
-          // Displaying a SnackBar when the card is tapped.
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("You have pressed the ${item.name} button!")));
 
-          // Navigating to the appropriate route based on the button pressed.
-          if (item.name == "Add an Item") {
+          if (item.name == "View Apps") {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ShopFormPage()),
+              MaterialPageRoute(
+                  builder: (context) => const ClickableNavigator()),
             );
           } else if (item.name == "Show Items") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const ProductPage()));
           } else if (item.name == "Logout") {
-            final response =
-                await request.logout("http://127.0.0.1:8001/auth/logout/");
+            final response = await request.logout(
+                "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/auth/logout/");
             String message = response["message"];
             if (response['status']) {
               String uname = response["username"];
@@ -84,11 +76,6 @@ class ShopCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  item.index,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
-                ),
                 Icon(
                   item.icon,
                   color: Colors.white,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/list_PinjamBuku.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/user_PinjamBuku.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/PinjamBukulist_form.dart';
+import 'package:gourmet_labs/screens/menu.dart';
 
 class ShopItem {
   final String name;
@@ -49,7 +50,7 @@ class ShopCard extends StatelessWidget {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const PinjamBukuListPage(),
+                  builder: (context) => MyHomePage(),
                 ));
           }
         },
