@@ -1,23 +1,21 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:gourmet_labs/models/item.dart';
-import 'package:gourmet_labs/screens/show_item.dart';
-import 'package:gourmet_labs/widgets/left_drawer.dart';
+import 'package:gourmet_labs/apps/review/models/ReviewBuku.dart';
+import 'package:gourmet_labs/apps/review/screens/show_ReviewBuku.dart';
+import 'package:gourmet_labs/apps/review/widgets/leftDrawer_review.dart';
 
-class ProductPage extends StatefulWidget {
-  const ProductPage({Key? key}) : super(key: key);
+class MyReviewPage extends StatefulWidget {
+    const MyReviewPage({Key? key}) : super(key: key);
 
-  @override
-  _ProductPageState createState() => _ProductPageState();
+    @override
+    _MyReviewPageState createState() => _MyReviewPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {
+class _MyReviewPageState extends State<MyReviewPage> {
   // Function to fetch product data from the server
-  Future<List<Product>> fetchProduct() async {
-    var url = Uri.parse('http://127.0.0.1:8001/get-product/');
+  Future<List<ReviewBuku>> fetchProduct() async {
+    var url = Uri.parse('http://127.0.0.1:8000/review/json/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -25,10 +23,10 @@ class _ProductPageState extends State<ProductPage> {
 
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-    List<Product> listItem = [];
+    List<ReviewBuku> listItem = [];
     for (var d in data) {
       if (d != null) {
-        listItem.add(Product.fromJson(d));
+        listItem.add(ReviewBuku.fromJson(d));
       }
     }
     return listItem;
@@ -58,7 +56,7 @@ class _ProductPageState extends State<ProductPage> {
               return const Column(
                 children: [
                   Text(
-                    "No item data.",
+                    "No book data.",
                     style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                   ),
                   SizedBox(height: 8),
@@ -76,8 +74,8 @@ class _ProductPageState extends State<ProductPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailProductPage(
-                              product: snapshot.data![index],
+                            builder: (context) => DetailReviewPage(
+                              review: snapshot.data![index],
                             ),
                           ),
                         );
@@ -92,7 +90,7 @@ class _ProductPageState extends State<ProductPage> {
                           children: [
                             // Displaying the product name with specified style
                             Text(
-                              " - ${snapshot.data![index].fields.name}",
+                              " - ${snapshot.data![index].fields.book}",
                               style: const TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
