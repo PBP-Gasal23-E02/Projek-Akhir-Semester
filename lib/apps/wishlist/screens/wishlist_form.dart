@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:gourmet_labs/apps/wishlist/screens/menu_wishlist.dart';
 import 'package:gourmet_labs/apps/wishlist/widgets/left_drawer.dart';
 
-// A list to store items added through the form.
+// Sebuah list untuk menyimpan item yang ditambahkan melalui formulir.
 List<Wishlist> items = [];
 
 class WishlistFormPage extends StatefulWidget {
@@ -26,12 +26,11 @@ class _ShopFormPageState extends State<WishlistFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Accessing the CookieRequest provider
+    // Mendapatkan instance dari CookieRequest menggunakan Provider
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
       appBar: AppBar(
-        // Setting the title of the app bar
         title: const Center(
           child: Text(
             'Add Wishlist Form',
@@ -40,14 +39,13 @@ class _ShopFormPageState extends State<WishlistFormPage> {
         backgroundColor: Colors.lightGreen,
         foregroundColor: Colors.white,
       ),
-      // OK TODO: Add the previously created drawer here
       drawer: const LeftDrawer(),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            // Text input for Item Name
+            // TextFormField untuk memasukkan nama judul Wishlist
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -71,7 +69,7 @@ class _ShopFormPageState extends State<WishlistFormPage> {
                 },
               ),
             ),
-            // Text input for Description
+            // TextFormField untuk memasukkan deskripsi Wishlist
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -95,26 +93,27 @@ class _ShopFormPageState extends State<WishlistFormPage> {
                 },
               ),
             ),
-            // Save button
+            // Tombol untuk menyimpan Wishlist baru
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.indigo),
+                    backgroundColor: MaterialStateProperty.all(Colors.teal),
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      // Send data to Django and wait for response
+                      var _dateAdded = DateTime.now();
                       final response = await request.postJson(
-                          "http://127.0.0.1:8000/wishlist/create-flutter/",
+                          "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/wishlist/create-flutter/",
                           jsonEncode(<String, String>{
                             'title': _title,
                             'description': _description,
+                            'dateAdded':
+                                "${_dateAdded.year}-${_dateAdded.month}-${_dateAdded.day}",
                           }));
                       if (response['status'] == 'success') {
-                        // Show success message and navigate to the home page
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           content: Text("New item successfully saved!"),
@@ -125,7 +124,6 @@ class _ShopFormPageState extends State<WishlistFormPage> {
                               builder: (context) => MyWishlistPage()),
                         );
                       } else {
-                        // Show error message if there is an issue
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           content: Text("There is an error, please try again."),

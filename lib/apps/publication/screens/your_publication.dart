@@ -3,22 +3,21 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:gourmet_labs/apps/wishlist/models/model_wishlist.dart';
-import 'package:gourmet_labs/apps/wishlist/screens/show_wishlist.dart';
-import 'package:gourmet_labs/apps/wishlist/widgets/left_drawer.dart';
+import 'package:gourmet_labs/models/item.dart';
+import 'package:gourmet_labs/screens/show_item.dart';
+import 'package:gourmet_labs/widgets/left_drawer.dart';
 
-class WishlistPage extends StatefulWidget {
-  const WishlistPage({Key? key}) : super(key: key);
+class ProductPage extends StatefulWidget {
+  const ProductPage({Key? key}) : super(key: key);
 
   @override
-  _WishlistPageState createState() => _WishlistPageState();
+  _ProductPageState createState() => _ProductPageState();
 }
 
-class _WishlistPageState extends State<WishlistPage> {
-  // Fungsi asynchronous untuk mengambil data wishlist dari API
-  Future<List<Wishlist>> fetchProduct() async {
-    var url = Uri.parse(
-        'https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/wishlist/get-wishlist/');
+class _ProductPageState extends State<ProductPage> {
+  // Function to fetch product data from the server
+  Future<List<Product>> fetchProduct() async {
+    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/publication/json/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -26,10 +25,10 @@ class _WishlistPageState extends State<WishlistPage> {
 
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-    List<Wishlist> listItem = [];
+    List<Product> listItem = [];
     for (var d in data) {
       if (d != null) {
-        listItem.add(Wishlist.fromJson(d));
+        listItem.add(Product.fromJson(d));
       }
     }
     return listItem;
@@ -37,46 +36,48 @@ class _WishlistPageState extends State<WishlistPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Building the scaffold for the product page
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wishlist List'),
-        backgroundColor: Colors.blue,
+        title: const Text('Items'),
+        backgroundColor: Colors.pink,
         foregroundColor: Colors.white,
       ),
+      // Adding a left drawer to the scaffold
       drawer: const LeftDrawer(),
       body: FutureBuilder(
-        // Memanggil fungsi fetchProduct() secara asynchronous
+        // Using FutureBuilder to handle asynchronous data fetching
         future: fetchProduct(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
-            // Menampilkan indikator loading jika data masih diambil
+            // Displaying a loading indicator while data is being fetched
             return const Center(child: CircularProgressIndicator());
           } else {
             if (!snapshot.hasData) {
-              // Menampilkan pesan jika tidak ada data wishlist
+              // Displaying a message if no item data is available
               return const Column(
                 children: [
                   Text(
-                    "No book data.",
+                    "No item data.",
                     style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                   ),
                   SizedBox(height: 8),
                 ],
               );
             } else {
-              // Menampilkan daftar wishlist dalam ListView.builder
+              // Building a ListView to display the fetched product items
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (_, index) => Column(
                   children: [
-                    // Menambahkan GestureDetector untuk menavigasi ke halaman detail saat item di-tap
+                    // GestureDetector to navigate to the detail page on tap
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailWishlistPage(
-                              wishlist: snapshot.data![index],
+                            builder: (context) => DetailProductPage(
+                              product: snapshot.data![index],
                             ),
                           ),
                         );
@@ -89,9 +90,9 @@ class _WishlistPageState extends State<WishlistPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Menampilkan judul wishlist dengan ikon bintang
+                            // Displaying the product name with specified style
                             Text(
-                              " ★ ${snapshot.data![index].fields.title}",
+                              " - ${snapshot.data![index].fields.name}",
                               style: const TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
@@ -101,7 +102,7 @@ class _WishlistPageState extends State<WishlistPage> {
                         ),
                       ),
                     ),
-                    // Menambahkan pemisah antar item wishlist
+                    // Adding a Divider after each item except for the last one
                     if (index < snapshot.data!.length - 1) const Divider(),
                   ],
                 ),
