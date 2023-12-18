@@ -9,7 +9,7 @@ class MyReviewPage extends StatelessWidget {
     ShopItem("Read Review", Icons.auto_awesome, Colors.lightBlue),
     ShopItem(
         "Add Review Produk", Icons.add_reaction_outlined, Colors.lightBlue),
-    ShopItem("Logout", Icons.logout, Colors.lightBlue),
+    ShopItem("Back to Home", Icons.home_outlined, Colors.lightBlue),
   ];
 
   @override

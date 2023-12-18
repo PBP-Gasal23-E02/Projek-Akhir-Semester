@@ -4,6 +4,7 @@ import 'package:gourmet_labs/screens/menu.dart';
 import 'package:gourmet_labs/widgets/left_drawer.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/menu.dart';
 import 'package:gourmet_labs/apps/wishlist/screens/menu_wishlist.dart';
+import 'package:gourmet_labs/apps/review/screens/menu_ReviewBuku.dart';
 
 class ClickableNavigator extends StatelessWidget {
   const ClickableNavigator({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class ClickableNavigator extends StatelessWidget {
             context,
             Icons.playlist_add_circle,
             'Review',
-            const ProductPage(),
+            MyReviewPage(),
           ),
           _buildListItem(
             context,

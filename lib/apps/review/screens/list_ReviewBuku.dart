@@ -15,7 +15,7 @@ class MyReviewPage extends StatefulWidget {
 class _MyReviewPageState extends State<MyReviewPage> {
   // Function to fetch product data from the server
   Future<List<ReviewBuku>> fetchProduct() async {
-    var url = Uri.parse('http://127.0.0.1:8000/review/json/');
+    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/review/json/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},

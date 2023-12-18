@@ -6,6 +6,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:gourmet_labs/apps/review/screens/list_ReviewBuku.dart';
 import 'package:gourmet_labs/apps/review/screens/review_form.dart';
+import 'package:gourmet_labs/screens/menu.dart';
 
 // Defining a class to represent items in the shop.
 class ShopItem {
@@ -54,6 +55,9 @@ class ShopCard extends StatelessWidget {
           } else if (item.name == "Read Review") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const MyReviewPage()));
+          } else if (item.name == "Back to Home") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyHomePage()));
           }
         },
         child: Container(
