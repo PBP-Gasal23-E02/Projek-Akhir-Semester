@@ -2,27 +2,22 @@
 import 'package:flutter/material.dart';
 import 'package:gourmet_labs/screens/list_item.dart';
 import 'package:gourmet_labs/screens/menu.dart';
-import 'package:gourmet_labs/screens/gourmet_form.dart';
-import 'package:gourmet_labs/screens/gourmet_show.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/menu.dart';
 import 'package:gourmet_labs/apps/wishlist/screens/menu_wishlist.dart';
 import 'package:gourmet_labs/apps/Bookmark/screens/menu_bookmark.dart';
+import 'package:gourmet_labs/apps/review/screens/menu_ReviewBuku.dart';
 
-// A stateless widget representing the left drawer of the application.
 class LeftDrawer extends StatelessWidget {
-  // Constructor for the LeftDrawer class.
   const LeftDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Creating a Drawer with a ListView to display the menu items.
     return Drawer(
       child: ListView(
         children: [
-          // DrawerHeader with GourmetLabs branding and tagline.
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.indigo,
+              color: Colors.teal,
             ),
             child: Column(
               children: [
@@ -49,7 +44,6 @@ class LeftDrawer extends StatelessWidget {
             ),
           ),
 
-          // ListTile for navigating to the main page.
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title: const Text('Main Page'),
@@ -62,24 +56,10 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
 
-          // ListTile for navigating to the 'Add an Item' screen.
-          ListTile(
-            leading: const Icon(Icons.add_shopping_cart),
-            title: const Text('Add an Item'),
-            onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ShopFormPage(),
-                  ));
-            },
-          ),
-
           ListTile(
             leading: const Icon(Icons.shopping_basket),
             title: const Text('Show Items'),
             onTap: () {
-              // Route menu ke halaman produk
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ProductPage()),
@@ -88,10 +68,9 @@ class LeftDrawer extends StatelessWidget {
           ),
 
           ListTile(
-            leading: const Icon(Icons.shopping_basket),
+            leading: const Icon(Icons.book_sharp),
             title: const Text('Publication'),
             onTap: () {
-              // Route menu ke halaman produk
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ProductPage()),
@@ -100,13 +79,12 @@ class LeftDrawer extends StatelessWidget {
           ),
 
           ListTile(
-            leading: const Icon(Icons.shopping_basket),
+            leading: const Icon(Icons.playlist_add_circle),
             title: const Text('Review'),
             onTap: () {
-              // Route menu ke halaman produk
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ProductPage()),
+                MaterialPageRoute(builder: (context) => MyReviewPage()),
               );
             },
           ),
@@ -115,7 +93,6 @@ class LeftDrawer extends StatelessWidget {
             leading: const Icon(Icons.star),
             title: const Text('Wishlist'),
             onTap: () {
-              // Route menu ke halaman produk
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MyWishlistPage()),
@@ -124,10 +101,9 @@ class LeftDrawer extends StatelessWidget {
           ),
 
           ListTile(
-            leading: const Icon(Icons.shopping_basket),
+            leading: const Icon(Icons.book_online_rounded),
             title: const Text('Yourbook'),
             onTap: () {
-              // Route menu ke halaman produk
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => YourBookPage()),
@@ -136,10 +112,9 @@ class LeftDrawer extends StatelessWidget {
           ),
 
           ListTile(
-            leading: const Icon(Icons.bookmark),
+            leading: const Icon(Icons.bookmark_add),
             title: const Text('Bookmark'),
             onTap: () {
-              // Route menu ke halaman produk
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => BookmarkPage()),

@@ -1,16 +1,11 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:gourmet_labs/screens/menu.dart';
-import 'package:gourmet_labs/widgets/left_drawer.dart';
-import 'package:gourmet_labs/widgets/menu_card.dart';
-
-// A list to store items added through the form.
-List<Items> items = [];
+import 'package:gourmet_labs/apps/review/models/ReviewBuku.dart';
+import 'package:gourmet_labs/apps/review/screens/menu_ReviewBuku.dart';
+import 'package:gourmet_labs/apps/review/widgets/leftDrawer_review.dart';
 
 class ShopFormPage extends StatefulWidget {
   const ShopFormPage({super.key});
@@ -21,109 +16,77 @@ class ShopFormPage extends StatefulWidget {
 
 class _ShopFormPageState extends State<ShopFormPage> {
   final _formKey = GlobalKey<FormState>();
-  String _name = "";
-  int _price = 0;
-  String _description = "";
+  String _book = "";
+  String _reviewCust = "";
 
   @override
   Widget build(BuildContext context) {
-    // Accessing the CookieRequest provider
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
       appBar: AppBar(
-        // Setting the title of the app bar
         title: const Center(
           child: Text(
-            'Add Item Form',
+            'Add Review Form',
           ),
         ),
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
-      // OK TODO: Add the previously created drawer here
+      // OK TODO: Tambahkan drawer yang sudah dibuat di sini
       drawer: const LeftDrawer(),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            // Text input for Item Name
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                  hintText: "Item Name",
-                  labelText: "Item Name",
+                  hintText: "Judul Buku",
+                  labelText: "Judul Buku",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
                 onChanged: (String? value) {
                   setState(() {
-                    _name = value!;
+                    _book = value!;
                   });
                 },
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return "Name cannot be empty!";
+                    return "Judul Buku tidak boleh kosong!";
                   }
                   return null;
                 },
               ),
             ),
-            // Text input for Price
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                  hintText: "Price",
-                  labelText: "Price",
+                  hintText: "Review",
+                  labelText: "Review",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
                 onChanged: (String? value) {
                   setState(() {
-                    _price = int.parse(value!);
+                    // OK TODO: Tambahkan variabel yang sesuai
+                    _reviewCust = value!;
                   });
                 },
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return "Price cannot be empty!";
-                  }
-                  if (int.tryParse(value) == null) {
-                    return "Price must be a number!";
+                    return "Review tidak boleh kosong!";
                   }
                   return null;
                 },
               ),
             ),
-            // Text input for Description
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Description",
-                  labelText: "Description",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                ),
-                onChanged: (String? value) {
-                  setState(() {
-                    _description = value!;
-                  });
-                },
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return "Description cannot be empty!";
-                  }
-                  return null;
-                },
-              ),
-            ),
-            // Save button
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -134,29 +97,31 @@ class _ShopFormPageState extends State<ShopFormPage> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      // Send data to Django and wait for response
+                      // Kirim ke Django dan tunggu respons
+                      // OK TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                       final response = await request.postJson(
-                          "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/create-flutter/",
+                          "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/review/create-flutter/",
                           jsonEncode(<String, String>{
-                            'name': _name,
-                            'price': _price.toString(),
-                            'description': _description,
+                            'book': _book,
+                            'review_cust': _reviewCust,
+                            // TODO: Sesuaikan field data sesuai dengan aplikasimu
                           }));
                       if (response['status'] == 'success') {
-                        // Show success message and navigate to the home page
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
-                          content: Text("New item successfully saved!"),
+                          content: Text("Review berhasil tersimpan!"),
                         ));
+                        // ignore: use_build_context_synchronously
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => MyHomePage()),
+                          MaterialPageRoute(
+                              builder: (context) => MyReviewPage()),
                         );
                       } else {
-                        // Show error message if there is an issue
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
-                          content: Text("There is an error, please try again."),
+                          content:
+                              Text("Terdapat kesalahan, silakan coba lagi."),
                         ));
                       }
                     }
