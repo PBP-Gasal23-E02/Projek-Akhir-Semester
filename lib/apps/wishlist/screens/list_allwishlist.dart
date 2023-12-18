@@ -15,9 +15,10 @@ class AllWishlistPage extends StatefulWidget {
 }
 
 class _AllWishlistPageState extends State<AllWishlistPage> {
-  // Function to fetch product data from the server
+  // Fungsi asynchronous untuk mengambil data wishlist dari API
   Future<List<Wishlist>> fetchProduct() async {
-    var url = Uri.parse('http://127.0.0.1:8000/wishlist/json/');
+    var url =
+        Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/wishlist/json/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -36,25 +37,23 @@ class _AllWishlistPageState extends State<AllWishlistPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Building the scaffold for the product page
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Items'),
+        title: const Text('All Wishlist List'),
         backgroundColor: Colors.pink,
         foregroundColor: Colors.white,
       ),
-      // Adding a left drawer to the scaffold
       drawer: const LeftDrawer(),
       body: FutureBuilder(
-        // Using FutureBuilder to handle asynchronous data fetching
+        // Memanggil fungsi fetchProduct() secara asynchronous
         future: fetchProduct(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
-            // Displaying a loading indicator while data is being fetched
+            // Menampilkan indikator loading jika data masih diambil
             return const Center(child: CircularProgressIndicator());
           } else {
             if (!snapshot.hasData) {
-              // Displaying a message if no item data is available
+              // Menampilkan pesan jika tidak ada data wishlist
               return const Column(
                 children: [
                   Text(
@@ -65,12 +64,12 @@ class _AllWishlistPageState extends State<AllWishlistPage> {
                 ],
               );
             } else {
-              // Building a ListView to display the fetched product items
+              // Menampilkan daftar wishlist dalam ListView.builder
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (_, index) => Column(
                   children: [
-                    // GestureDetector to navigate to the detail page on tap
+                    // Menambahkan GestureDetector untuk menavigasi ke halaman detail saat item di-tap
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -90,9 +89,9 @@ class _AllWishlistPageState extends State<AllWishlistPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Displaying the product name with specified style
                             Text(
-                              " - ${snapshot.data![index].fields.title}",
+                              // Menampilkan judul wishlist dengan ikon bintang
+                              " ★ ${snapshot.data![index].fields.title}",
                               style: const TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
@@ -102,7 +101,7 @@ class _AllWishlistPageState extends State<AllWishlistPage> {
                         ),
                       ),
                     ),
-                    // Adding a Divider after each item except for the last one
+                    // Menambahkan pemisah antar item wishlist
                     if (index < snapshot.data!.length - 1) const Divider(),
                   ],
                 ),

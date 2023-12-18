@@ -7,30 +7,27 @@ import 'package:provider/provider.dart';
 import 'package:gourmet_labs/apps/wishlist/screens/list_wishlist.dart';
 import 'package:gourmet_labs/apps/wishlist/screens/wishlist_form.dart';
 
-// Defining a class to represent items in the shop.
+// Class untuk merepresentasikan item di layar utama.
 class ShopItem {
   final String name;
   final IconData icon;
   final Color color;
 
-  // Constructor for the ShopItem class.
   ShopItem(this.name, this.icon, this.color);
 }
 
-// Defining a class to represent individual items in the shop.
+// Class untuk merepresentasikan informasi item.
 class Items {
   final String name;
   final String description;
 
-  // Constructor for the Items class.
   Items({required this.name, required this.description});
 }
 
-// A stateless widget representing a card in the shop.
+// Widget untuk menampilkan item dalam bentuk card.
 class ShopCard extends StatelessWidget {
   final ShopItem item;
 
-  // Constructor for the ShopCard class.
   const ShopCard(this.item, {super.key});
 
   @override
@@ -39,13 +36,12 @@ class ShopCard extends StatelessWidget {
       color: item.color,
       child: InkWell(
         onTap: () async {
-          // Displaying a SnackBar when the card is tapped.
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("You have pressed the ${item.name} button!")));
 
-          // Navigating to the appropriate route based on the button pressed.
+          // Navigasi berdasarkan nama item.
           if (item.name == "Add a Wishlist") {
             Navigator.push(
               context,

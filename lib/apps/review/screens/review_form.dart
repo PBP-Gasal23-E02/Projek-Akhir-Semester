@@ -100,7 +100,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
                       // Kirim ke Django dan tunggu respons
                       // OK TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                       final response = await request.postJson(
-                          "http://127.0.0.1:8000/review/create-flutter/",
+                          "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/review/create-flutter/",
                           jsonEncode(<String, String>{
                             'book': _book,
                             'review_cust': _reviewCust,

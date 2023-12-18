@@ -20,7 +20,7 @@ class RegisterApp extends StatelessWidget {
     return MaterialApp(
       title: 'Register',
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+        primarySwatch: Colors.teal,
       ),
       home: const RegisterPage(),
     );
@@ -45,26 +45,22 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Accessing the CookieRequest provider
     final request = context.watch<CookieRequest>();
 
-    // Building the main scaffold with app bar and body
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Register',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
-        // Column layout for organizing widgets vertically
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Text field for entering the username
             TextField(
               controller: _usernameController,
               decoration: const InputDecoration(
@@ -73,7 +69,6 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const SizedBox(height: 12.0),
-            // Text field for entering the password (obscured for security)
             TextField(
               controller: _passwordController,
               decoration: const InputDecoration(
@@ -83,7 +78,6 @@ class _RegisterPageState extends State<RegisterPage> {
               obscureText: true,
             ),
             const SizedBox(height: 12.0),
-            // Text field for confirming the password (obscured)
             TextField(
               controller: _passwordConfirmationController,
               decoration: const InputDecoration(
@@ -93,16 +87,12 @@ class _RegisterPageState extends State<RegisterPage> {
               obscureText: true,
             ),
             const SizedBox(height: 24.0),
-            // Elevated button for initiating the registration process
             ElevatedButton(
               onPressed: () async {
-                // Extracting username and password from text fields
                 String username = _usernameController.text;
                 String password = _passwordController.text;
                 String passwordConfirmation =
                     _passwordConfirmationController.text;
-
-                // Checking if password and confirmation match
                 if (password != passwordConfirmation) {
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
@@ -112,27 +102,24 @@ class _RegisterPageState extends State<RegisterPage> {
                   return;
                 }
                 // Sending registration request to Django backend
-                final response =
-                    await request.post("http://127.0.0.1:8001/auth/register/", {
-                  'username': username,
-                  'password': password,
-                });
+                final response = await request.post(
+                    "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/auth/register/",
+                    {
+                      'username': username,
+                      'password': password,
+                    });
 
-                // Handling the response based on registration success or failure
                 if (response['status']) {
                   String message = response['message'];
 
-                  // Navigating to the login page on successful registration
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
-                  // Showing a snackbar with a success message
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(SnackBar(content: Text("$message")));
                 } else {
-                  // Showing an alert dialog on registration failure
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
