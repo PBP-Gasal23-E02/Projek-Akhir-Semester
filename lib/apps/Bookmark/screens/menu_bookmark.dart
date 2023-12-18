@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gourmet_labs/apps/Bookmark/screens/bookmark_form.dart';
-import 'package:gourmet_labs/widgets/left_drawer.dart';
+import 'package:gourmet_labs/apps/bookmark/widgets/left_drawer_bookmark.dart';
 import 'package:gourmet_labs/apps/Bookmark/widgets/bookmark_card.dart';
 
 class BookmarkPage extends StatelessWidget {
@@ -9,7 +8,7 @@ class BookmarkPage extends StatelessWidget {
   final List<ShopItem> items = [
     ShopItem("Your Bookmarks", Icons.bookmarks_outlined, Colors.blueAccent),
     ShopItem("Add Bookmark", Icons.bookmark_add_outlined, Colors.deepOrange),
-    ShopItem("All Books", Icons.book_outlined, Colors.deepPurpleAccent),
+    ShopItem("Home Screen", Icons.home_outlined, Colors.deepPurpleAccent),
   ];
 
   @override

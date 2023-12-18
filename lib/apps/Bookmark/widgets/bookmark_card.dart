@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gourmet_labs/apps/Bookmark/screens/bookmark_form.dart';
 import 'package:gourmet_labs/apps/Bookmark/screens/list_bookmark.dart';
+import 'package:gourmet_labs/screens/menu.dart';
 
 class ShopItem {
   final String name;
@@ -38,8 +39,11 @@ class ShopCard extends StatelessWidget {
                 ));
           } else if (item.name == "Your Bookmarks") {
             Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BookmarkPage()));
-      }
+                MaterialPageRoute(builder: (context) => const BookmarkPage()));
+          } else if (item.name == "Home Screen") {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MyHomePage()));
+          }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:gourmet_labs/apps/Bookmark/screens/list_bookmark.dart';
-import 'package:gourmet_labs/widgets/left_drawer.dart';
+import 'package:gourmet_labs/apps/Bookmark/widgets/left_drawer_bookmark.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +31,7 @@ class _BookFormPageState extends State<BookFormPage> {
         foregroundColor: Colors.white,
       ),
       // TODO: Tambahkan drawer yang sudah dibuat di sini
+      drawer: const LeftDrawer(),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
