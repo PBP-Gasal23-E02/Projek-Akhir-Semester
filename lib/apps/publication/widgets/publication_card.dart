@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 // import 'package:inventory_flutter/screens/itemlist_form.dart';
 // import 'package:inventory_flutter/screens/list_item.dart';
 // import 'package:inventory_flutter/screens/login.dart';
-import 'package:gourmet_labs/apps/YourBook/screens/list_PinjamBuku.dart';
-import 'package:gourmet_labs/apps/YourBook/screens/user_PinjamBuku.dart';
-import 'package:gourmet_labs/apps/YourBook/screens/PinjamBukulist_form.dart';
-import 'package:gourmet_labs/screens/menu.dart';
+// import 'package:gourmet_labs/apps/YourBook/screens/list_PinjamBuku.dart';
+import 'package:gourmet_labs/apps/publication/screens/new_publication.dart';
+import 'package:gourmet_labs/apps/publication/screens/your_publication.dart';
+// import 'package:gourmet_labs/apps/YourBook/screens/PinjamBukulist_form.dart';
 
-class ShopItem {
+class PublicationItem {
   final String name;
   final IconData icon;
   final Color color;
 
-  ShopItem(this.name, this.icon, this.color);
+  PublicationItem(this.name, this.icon, this.color);
 }
 
-class ShopCard extends StatelessWidget {
-  final ShopItem item;
+class PublicationCard extends StatelessWidget {
+  final PublicationItem item;
 
-  const ShopCard(this.item, {super.key}); // Constructor
+  const PublicationCard(this.item, {super.key}); // Constructor
 
   @override
   Widget build(BuildContext context) {
@@ -34,23 +34,17 @@ class ShopCard extends StatelessWidget {
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
 
           // Navigate ke route yang sesuai (tergantung jenis tombol)
-          if (item.name == "Tambah Item") {
+          if (item.name == "Add New Publication") {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const InventoryFormPage(),
+                  builder: (context) => const PublicationFormPage(),
                 ));
-          } else if (item.name == "Lihat Item berdasarkan user") {
+          } else if (item.name == "Your Publication") {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const UserPage(),
-                ));
-          } else if (item.name == "Lihat Item") {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MyHomePage(),
+                  builder: (context) => const YourPublication(),
                 ));
           }
         },
