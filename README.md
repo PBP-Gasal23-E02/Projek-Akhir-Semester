@@ -64,6 +64,51 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 
 * Ketiga, kita juga membuat tampilan dengan memakai *widget* pada Flutter yang terintegrasi dengan *API Django* yang menggunakan *event-handling* dan *asynchronous programming* agar pengalaman *user* menjadi lebih menarik dan interaktif. 
 <br>
+
+## Alur *Build*, *Run*, dan *Release*
+**1. Build**
+Jika ingin membuat aplikasi, langkah pertama adalah menginstal Flutter. Setelah sudah berhasil instal dan dependensinya, aplikasi dapat di *build*. 
+
+Berikut adalah perintah untuk memulai inisialisasi aplikasi:
+`flutter create <NAMA_APLIKASI>`
+
+Setelah selesai, kode dapat dimasukkan ke dalam file `main.dart` sebagai file utama untuk aplikasi atau dapat ditambahkan ke dalam file baru di dalam folder lib/. Dengan mengikuti langkah-langkah ini, aplikasi siap dijalankan. 
+<br>
+
+**2. Run**
+Berikut adalah perintah untuk menjalankan aplikasi secara lokal:
+`flutter run`
+
+Kemudian, pilihlah *browser* untuk menjalankan aplikasi, contohnya *Chrome, Browser Windows,* dan lainnya. Saat dijalankan di *browser*, aplikasi dapat diakses melalui *localhost*.
+<br>
+
+**3. Deploy dan Release**
+Aplikasi dapat didistribusikan melalui *Github Releases*. Pengaturan Dasar untuk Persetujuan Aplikasi Flutter Untuk publikasi aplikasi di App Center, aplikasi Flutter harus ditandatangani atau diotorisasi menggunakan *key* agar aplikasi yang dirilis memiliki keabsahan yang dijamin. Oleh karena itu, kita akan membuat *key* untuk aplikasi dan mengaturnya untuk otomatisasi agar skrip CI/CD berjalan dengan baik.
+<br>
+
+Berikut adalah langkah-langkahnya:
+1. Pertama, membuat *keystore*.
+Berikut adalah perintah yang harus dijalankan di terminal bagi pengguna Mac OS atau Linux:
+`keytool -genkey -v -keystore ~/release-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release`
+
+Sedangkan, berikut adalah perintah ang harus dijalankan di terminal bagi pengguna Windows:
+`keytool -genkey -v -keystore %userprofile%\release-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias release`
+
+2. Pindahkan file *keystore* ke dalam folder proyek aplikasi dan tambahkan sintaks berikut ke file `.gitignore` di folder proyek aplikasi agar *keystore* tidak diikutsertakan sebagai file dalam repositori Git.
+
+3. Bukalah file `/android/app/build.gradle`. Cari bagian `buildTypes` dan ubahlah bagian tersebut.
+
+4. Lalu, modifikasikan skrip *GitHub Actions* (jika belum ada) dan membuat skrip baru untuk *build* di *App Center*.
+<br>
+
+Berikut adalah langkah-langkah membuat skrip *GitHub Actions*:
+1. Pertama, Hasilkan `string base64` sebagai representasi file *keystore* yang akan disimpan sebagai variabel lingkungan nanti. kemudian, jalankan perintah `openssl base64 -in release-keystore.jks` di folder *root* untuk menghasilkan `string base64`. Simpan *string* tersebut untuk sementara.
+
+2. Kedua, buatlah *secret repository* di repositori Github dengan ketentuan:
+`GH_TOKEN`: berisi Token Akses Pribadi GitHub dari salah satu admin repositori untuk *release* otomatis 
+`KEY_JKS`: berisi string base64 dari file keystore yang telah dibuat sebelumnya 
+`KEY_PASSWORD`: berisi kata sandi yang digunakan saat membuat file *keystore* 
+
 <br>
 
 [![Staging](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/staging.yml/badge.svg)](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/staging.yml) [![Pre-Release](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/pre-release.yml/badge.svg)](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/pre-release.yml) [![Release](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-Gasal23-E02/Projek-Akhir-Semester/actions/workflows/release.yml) [![Build status](https://build.appcenter.ms/v0.1/apps/c0066952-3bf4-4cab-ae2d-ea2272cb636e/branches/main/badge)](https://appcenter.ms)
