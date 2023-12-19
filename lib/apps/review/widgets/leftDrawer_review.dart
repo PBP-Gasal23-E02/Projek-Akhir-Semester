@@ -1,28 +1,30 @@
+// Importing necessary packages for Flutter and custom screens.
 import 'package:flutter/material.dart';
-import 'package:gourmet_labs/apps/wishlist/screens/list_wishlist.dart';
+import 'package:gourmet_labs/apps/review/screens/list_ReviewBuku.dart';
 import 'package:gourmet_labs/screens/menu.dart';
-import 'package:gourmet_labs/apps/wishlist/screens/wishlist_form.dart';
-import 'package:gourmet_labs/apps/wishlist/screens/list_allwishlist.dart';
-import 'package:gourmet_labs/apps/wishlist/screens/menu_wishlist.dart';
+import 'package:gourmet_labs/apps/review/screens/review_form.dart';
+//import 'package:gourmet_labs/apps/review/screens/list_allwishlist.dart';
 
+// A stateless widget representing the left drawer of the application.
 class LeftDrawer extends StatelessWidget {
+  // Constructor for the LeftDrawer class.
   const LeftDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Drawer untuk aplikasi Wishlist
+    // Creating a Drawer with a ListView to display the menu items.
     return Drawer(
       child: ListView(
         children: [
-          // Drawer header dengan branding GourmetLabs dan tagline.
+          // DrawerHeader with ScoobyMart branding and tagline.
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.teal,
+              color: Colors.indigo,
             ),
             child: Column(
               children: [
                 Text(
-                  'Wishlist',
+                  'Review',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -32,7 +34,7 @@ class LeftDrawer extends StatelessWidget {
                 ),
                 Padding(padding: EdgeInsets.all(10)),
                 Text(
-                  "Unleash Your Inner Bookworm, Wishlist Wonders Await!",
+                  "Unlock Worlds, One Page at a Time: Where Words Meet Wisdom in Every Review!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
@@ -44,10 +46,10 @@ class LeftDrawer extends StatelessWidget {
             ),
           ),
 
-          // ListTile untuk kembali ke halaman Beranda.
+          // ListTile for navigating to the main page.
           ListTile(
             leading: const Icon(Icons.home_outlined),
-            title: const Text('Back to Home'),
+            title: const Text('Home Page'),
             onTap: () {
               Navigator.pushReplacement(
                   context,
@@ -57,53 +59,28 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
 
-          // ListTile untuk kembali ke halaman Wishlist.
-          ListTile(
-            leading: const Icon(Icons.home_max_rounded),
-            title: const Text('Back to Wishlist'),
-            onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyWishlistPage(),
-                  ));
-            },
-          ),
-
-          // ListTile untuk menuju ke halaman 'Tambah Wishlist'.
+          // ListTile for navigating to the 'Add an Item' screen.
           ListTile(
             leading: const Icon(Icons.bookmark_add_rounded),
-            title: const Text('Add a Wishlist'),
+            title: const Text('Add a Review'),
             onTap: () {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const WishlistFormPage(),
+                    builder: (context) => const ShopFormPage(),
                   ));
             },
           ),
 
-          // ListTile untuk menuju ke halaman 'Tampilkan Wishlist Anda'.
-          ListTile(
-            leading: const Icon(Icons.star),
-            title: const Text('Show Your Wishlist'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const WishlistPage()),
-              );
-            },
-          ),
-
-          // ListTile untuk menuju ke halaman 'Tampilkan Semua Wishlist'.
           ListTile(
             leading: const Icon(Icons.stars),
-            title: const Text('Show All Wishlist'),
+            title: const Text('Show All Review'),
             onTap: () {
+              // Route menu ke halaman produk
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const AllWishlistPage()),
+                    builder: (context) => const MyReviewPage()),
               );
             },
           ),

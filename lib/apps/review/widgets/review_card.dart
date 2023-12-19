@@ -4,30 +4,34 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:gourmet_labs/apps/wishlist/screens/list_wishlist.dart';
-import 'package:gourmet_labs/apps/wishlist/screens/wishlist_form.dart';
+import 'package:gourmet_labs/apps/review/screens/list_ReviewBuku.dart';
+import 'package:gourmet_labs/apps/review/screens/review_form.dart';
+import 'package:gourmet_labs/screens/menu.dart';
 
-// Class untuk merepresentasikan item di layar utama.
+// Defining a class to represent items in the shop.
 class ShopItem {
   final String name;
   final IconData icon;
   final Color color;
 
+  // Constructor for the ShopItem class.
   ShopItem(this.name, this.icon, this.color);
 }
 
-// Class untuk merepresentasikan informasi item.
+// Defining a class to represent individual items in the shop.
 class Items {
-  final String name;
-  final String description;
+  final String book;
+  final String review_cust;
 
-  Items({required this.name, required this.description});
+  // Constructor for the Items class.
+  Items({required this.book, required this.review_cust});
 }
 
-// Widget untuk menampilkan item dalam bentuk card.
+// A stateless widget representing a card in the shop.
 class ShopCard extends StatelessWidget {
   final ShopItem item;
 
+  // Constructor for the ShopCard class.
   const ShopCard(this.item, {super.key});
 
   @override
@@ -36,23 +40,24 @@ class ShopCard extends StatelessWidget {
       color: item.color,
       child: InkWell(
         onTap: () async {
+          // Displaying a SnackBar when the card is tapped.
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("You have pressed the ${item.name} button!")));
 
-          // Navigasi berdasarkan nama item.
-          if (item.name == "Add a Wishlist") {
+          // Navigating to the appropriate route based on the button pressed.
+          if (item.name == "Add Review Produk") {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const WishlistFormPage()),
+              MaterialPageRoute(builder: (context) => const ShopFormPage()),
             );
-          } else if (item.name == "Show Your Wishlist") {
+          } else if (item.name == "Read Review") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const WishlistPage()));
-          } else if (item.name == "Show All Wishlist") {
+                MaterialPageRoute(builder: (context) => const MyReviewPage()));
+          } else if (item.name == "Back to Home") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const WishlistPage()));
+                MaterialPageRoute(builder: (context) => MyHomePage()));
           }
         },
         child: Container(

@@ -18,7 +18,7 @@ class YourBookPage extends StatelessWidget {
         title: const Text(
           'YourBook',
         ),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
       drawer: const LeftDrawer(),

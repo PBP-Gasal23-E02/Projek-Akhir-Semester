@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:gourmet_labs/widgets/left_drawer.dart';
-import 'package:gourmet_labs/widgets/menu_card.dart';
+import 'package:gourmet_labs/apps/Bookmark/widgets/left_drawer_bookmark.dart';
+import 'package:gourmet_labs/apps/Bookmark/widgets/bookmark_card.dart';
 
-class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key}) : super(key: key);
+class BookmarkPage extends StatelessWidget {
+  BookmarkPage({Key? key}) : super(key: key);
 
   final List<ShopItem> items = [
-    ShopItem("View Apps", Icons.checklist, Colors.teal),
-    ShopItem("View Books", Icons.library_books, Colors.blueGrey),
-    ShopItem("Logout", Icons.logout, Colors.teal),
+    ShopItem("Your Bookmarks", Icons.bookmarks_outlined, Colors.blueAccent),
+    ShopItem("Add Bookmark", Icons.bookmark_add_outlined, Colors.deepOrange),
+    ShopItem("Home Screen", Icons.home_outlined, Colors.deepPurpleAccent),
   ];
 
   @override
@@ -16,22 +16,22 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'GourmetLabs',
+          'Your Bookmarks',
         ),
-        backgroundColor: Colors.teal,
-        foregroundColor: Colors.white,
       ),
       drawer: const LeftDrawer(),
-      body: Center(
+      body: SingleChildScrollView(
+        // Widget wrapper yang dapat discroll
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0), // Set padding dari halaman
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // Widget untuk menampilkan children secara vertikal
             children: <Widget>[
               const Padding(
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  'Welcome to GourmetLabs!',
+                  'PBP Shop', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -39,7 +39,9 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              // Grid layout
               GridView.count(
+                // Container pada card kita.
                 primary: true,
                 padding: const EdgeInsets.all(20),
                 crossAxisSpacing: 10,
@@ -47,6 +49,7 @@ class MyHomePage extends StatelessWidget {
                 crossAxisCount: 3,
                 shrinkWrap: true,
                 children: items.map((ShopItem item) {
+                  // Iterasi untuk setiap item
                   return ShopCard(item);
                 }).toList(),
               ),
