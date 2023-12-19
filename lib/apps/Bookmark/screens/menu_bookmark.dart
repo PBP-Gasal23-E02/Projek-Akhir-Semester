@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gourmet_labs/apps/bookmark/widgets/left_drawer_bookmark.dart';
+import 'package:gourmet_labs/apps/Bookmark/widgets/left_drawer_bookmark.dart';
 import 'package:gourmet_labs/apps/Bookmark/widgets/bookmark_card.dart';
 
 class BookmarkPage extends StatelessWidget {
