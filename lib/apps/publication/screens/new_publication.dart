@@ -208,8 +208,7 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             final response = await request.postJson(
-                                // TODO: ubah routing
-                                "https://127.0.0.1:8000/publication/new-publication-flutter/",
+                                "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/publication/new-publication-flutter",
                                 jsonEncode(<String, String>{
                                   'author': _author,
                                   'title': _title,

@@ -1,5 +1,6 @@
 // Importing necessary packages for Flutter and custom screens.
 import 'package:flutter/material.dart';
+import 'package:gourmet_labs/apps/publication/screens/your_publication.dart';
 import 'package:gourmet_labs/screens/list_item.dart';
 import 'package:gourmet_labs/screens/menu.dart';
 import 'package:gourmet_labs/screens/gourmet_form.dart';
@@ -93,7 +94,7 @@ class LeftDrawer extends StatelessWidget {
               // Route menu ke halaman produk
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ProductPage()),
+                MaterialPageRoute(builder: (context) => const YourPublication()),
               );
             },
           ),
