@@ -1,23 +1,22 @@
-// ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:gourmet_labs/apps/publication/screens/new_publication.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:gourmet_labs/models/item.dart';
-import 'package:gourmet_labs/screens/show_item.dart';
+import 'package:gourmet_labs/apps/YourBook/models/Buku.dart';
 import 'package:gourmet_labs/widgets/left_drawer.dart';
 
-class ProductPage extends StatefulWidget {
-  const ProductPage({Key? key}) : super(key: key);
+class YourPublication extends StatefulWidget {
+  const YourPublication({Key? key}) : super(key: key);
 
   @override
-  _ProductPageState createState() => _ProductPageState();
+  _YourPublicationState createState() => _YourPublicationState();
 }
 
-class _ProductPageState extends State<ProductPage> {
+class _YourPublicationState extends State<YourPublication> {
   // Function to fetch product data from the server
-  Future<List<Product>> fetchProduct() async {
-    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/publication/json/');
+  Future<List<Buku>> fetchProduct() async {
+    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/api/books/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -25,10 +24,10 @@ class _ProductPageState extends State<ProductPage> {
 
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-    List<Product> listItem = [];
+    List<Buku> listItem = [];
     for (var d in data) {
       if (d != null) {
-        listItem.add(Product.fromJson(d));
+        listItem.add(Buku.fromJson(d));
       }
     }
     return listItem;
@@ -39,7 +38,7 @@ class _ProductPageState extends State<ProductPage> {
     // Building the scaffold for the product page
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Items'),
+        title: const Text('Your Publication'),
         backgroundColor: Colors.pink,
         foregroundColor: Colors.white,
       ),
@@ -67,45 +66,111 @@ class _ProductPageState extends State<ProductPage> {
             } else {
               // Building a ListView to display the fetched product items
               return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => Column(
-                  children: [
-                    // GestureDetector to navigate to the detail page on tap
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailProductPage(
-                              product: snapshot.data![index],
+                itemCount: snapshot.data!.length + 1,
+                itemBuilder: (_, index) {
+                  if (index == snapshot.data!.length) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(context, 
+                          MaterialPageRoute(builder: (context) => const PublicationFormPage()));
+                      }, 
+                      child: const Text("Add New Publication"),
+                    );
+                  }
+                  else {
+                    return Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context, 
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("${snapshot.data![index].fields.title}"),
+                                  content: Container(
+                                    decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'
+                                        ),
+                                        fit: BoxFit.cover,
+                                      )
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Author: ${snapshot.data![index].fields.authors}",
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                        Text(
+                                          "Author: ${snapshot.data![index].fields.issued}",
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                        Text(
+                                          "Author: ${snapshot.data![index].fields.subjects}",
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                        Text(
+                                          "Author: ${snapshot.data![index].fields.language}",
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                        Text(
+                                          "Author: ${snapshot.data![index].fields.bookshelves}",
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                        Text(
+                                          "Author: ${snapshot.data![index].fields.locc}",
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      }, 
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Colors.red[600]
+                                      ),
+                                      child: const Text(
+                                        "Close",
+                                        style: TextStyle(color: Colors.white),
+                                      )
+                                    )
+                                  ],
+                                );
+                              }
+                            );
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 12),
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Displaying the product name with specified style
+                                Text(
+                                  "${snapshot.data![index].fields.title}",
+                                  style: const TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text("by ${snapshot.data![index].fields.authors} -${snapshot.data![index].fields.language}")
+                              ]
                             ),
                           ),
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 12),
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Displaying the product name with specified style
-                            Text(
-                              " - ${snapshot.data![index].fields.name}",
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
                         ),
-                      ),
-                    ),
-                    // Adding a Divider after each item except for the last one
-                    if (index < snapshot.data!.length - 1) const Divider(),
-                  ],
-                ),
+                        if (index < snapshot.data!.length - 1) const Divider(),
+                      ],
+                    );
+                  }
+                }
               );
             }
           }
