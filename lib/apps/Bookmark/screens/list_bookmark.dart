@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gourmet_labs/apps/Bookmark/models/Bookmark.dart';
-import 'package:gourmet_labs/apps/Bookmark/screens/menu_bookmark.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
