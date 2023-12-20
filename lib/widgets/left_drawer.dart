@@ -1,5 +1,6 @@
 // Importing necessary packages for Flutter and custom screens.
 import 'package:flutter/material.dart';
+import 'package:gourmet_labs/apps/YourBook/screens/list_PinjamBuku.dart';
 import 'package:gourmet_labs/apps/publication/screens/publication.dart';
 import 'package:gourmet_labs/screens/list_item.dart';
 import 'package:gourmet_labs/screens/menu.dart';
@@ -56,12 +57,12 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.shopping_basket),
+            leading: const Icon(Icons.library_books),
             title: const Text('Show Items'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ProductPage()),
+                MaterialPageRoute(builder: (context) => const BukuListPage()),
               );
             },
           ),
