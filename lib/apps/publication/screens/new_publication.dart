@@ -40,17 +40,20 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: const Color.fromARGB(255, 252, 65, 51),
+        foregroundColor: Colors.white,
       ),
       drawer: const LeftDrawer(),
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-                'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Form(
+        // decoration: const BoxDecoration(
+        //   image: DecorationImage(
+        //     image: NetworkImage(
+        //         'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'),
+        //     fit: BoxFit.cover,
+        //   ),
+        // ),
+        child: SingleChildScrollView(
+          child: Form(
             key: _formKey,
             child: SingleChildScrollView(
               child: Column(
@@ -208,7 +211,7 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             final response = await request.postJson(
-                                "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/publication/new-publication-flutter",
+                                "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/publication/new-publication-flutter/",
                                 jsonEncode(<String, String>{
                                   'author': _author,
                                   'title': _title,
@@ -249,7 +252,9 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
                   )
                 ],
               ),
-            )),
+            )
+          ),
+        )
       ),
     );
   }

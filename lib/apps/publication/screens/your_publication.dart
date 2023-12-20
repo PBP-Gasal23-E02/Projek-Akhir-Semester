@@ -39,7 +39,7 @@ class _YourPublicationState extends State<YourPublication> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Publication'),
-        backgroundColor: Colors.pink,
+        backgroundColor: const Color.fromARGB(255, 34, 45, 130),
         foregroundColor: Colors.white,
       ),
       // Adding a left drawer to the scaffold
@@ -84,46 +84,48 @@ class _YourPublicationState extends State<YourPublication> {
                           onTap: () {
                             showDialog(
                               context: context, 
-                              builder: (BuildContext context) {
+                              builder: (context) {
                                 return AlertDialog(
                                   title: Text("${snapshot.data![index].fields.title}"),
                                   content: Container(
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'
-                                        ),
-                                        fit: BoxFit.cover,
-                                      )
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Author: ${snapshot.data![index].fields.authors}",
-                                          style: const TextStyle(color: Colors.white),
-                                        ),
-                                        Text(
-                                          "Author: ${snapshot.data![index].fields.issued}",
-                                          style: const TextStyle(color: Colors.white),
-                                        ),
-                                        Text(
-                                          "Author: ${snapshot.data![index].fields.subjects}",
-                                          style: const TextStyle(color: Colors.white),
-                                        ),
-                                        Text(
-                                          "Author: ${snapshot.data![index].fields.language}",
-                                          style: const TextStyle(color: Colors.white),
-                                        ),
-                                        Text(
-                                          "Author: ${snapshot.data![index].fields.bookshelves}",
-                                          style: const TextStyle(color: Colors.white),
-                                        ),
-                                        Text(
-                                          "Author: ${snapshot.data![index].fields.locc}",
-                                          style: const TextStyle(color: Colors.white),
-                                        ),
-                                      ],
+                                    // decoration: const BoxDecoration(
+                                    //   image: DecorationImage(
+                                    //     image: NetworkImage(
+                                    //       'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'
+                                    //     ),
+                                    //     fit: BoxFit.cover,
+                                    //   )
+                                    // ),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Author: ${snapshot.data![index].fields.authors}",
+                                            style: const TextStyle(color: Colors.black),
+                                          ),
+                                          Text(
+                                            "Issued: ${snapshot.data![index].fields.issued}",
+                                            style: const TextStyle(color: Colors.black),
+                                          ),
+                                          Text(
+                                            "Subjects: ${snapshot.data![index].fields.subjects}",
+                                            style: const TextStyle(color: Colors.black),
+                                          ),
+                                          Text(
+                                            "Language: ${snapshot.data![index].fields.language}",
+                                            style: const TextStyle(color: Colors.black),
+                                          ),
+                                          Text(
+                                            "Bookshelves: ${snapshot.data![index].fields.bookshelves}",
+                                            style: const TextStyle(color: Colors.black),
+                                          ),
+                                          Text(
+                                            "LoCc: ${snapshot.data![index].fields.loCc}",
+                                            style: const TextStyle(color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   actions: [
