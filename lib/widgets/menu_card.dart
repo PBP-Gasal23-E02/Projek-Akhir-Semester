@@ -48,7 +48,7 @@ class ShopCard extends StatelessWidget {
                   builder: (context) => const ClickableNavigator()),
             );
           } else if (item.name == "View Books") {
-            Navigator.pushReplacement(
+            Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const BukuListPage(),
