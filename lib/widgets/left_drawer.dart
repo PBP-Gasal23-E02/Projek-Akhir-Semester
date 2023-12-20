@@ -1,6 +1,6 @@
 // Importing necessary packages for Flutter and custom screens.
 import 'package:flutter/material.dart';
-import 'package:gourmet_labs/apps/publication/screens/your_publication.dart';
+import 'package:gourmet_labs/apps/publication/screens/publication.dart';
 import 'package:gourmet_labs/screens/list_item.dart';
 import 'package:gourmet_labs/screens/menu.dart';
 import 'package:gourmet_labs/apps/YourBook/screens/menu.dart';
@@ -74,7 +74,7 @@ class LeftDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const YourPublication()),
+                MaterialPageRoute(builder: (context) => YourPublicationPage()),
               );
             },
           ),
