@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gourmet_labs/apps/publication/screens/publication.dart';
 import 'package:gourmet_labs/screens/list_item.dart';
 import 'package:gourmet_labs/screens/menu.dart';
 import 'package:gourmet_labs/widgets/left_drawer.dart';
@@ -36,7 +37,7 @@ class ClickableNavigator extends StatelessWidget {
             context,
             Icons.book_sharp,
             'Publication',
-            const ProductPage(),
+            YourPublicationPage(),
           ),
           _buildListItem(
             context,
