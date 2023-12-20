@@ -5,6 +5,7 @@ import 'package:gourmet_labs/apps/YourBook/screens/menu.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:gourmet_labs/apps/YourBook/models/Buku.dart';
+
 class InventoryFormPage extends StatefulWidget {
   const InventoryFormPage({super.key});
 
@@ -29,7 +30,8 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
   }
 
   Future<List<String>> fetchProduct() async {
-    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/api/books/');
+    var url =
+        Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/api/books/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -74,37 +76,38 @@ class _InventoryFormPageState extends State<InventoryFormPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FutureBuilder<List<String>>(
-                  future: listProduct,
-                  builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else {
-                      return DropdownButton<String>(
-                        value: selectedValue,
-                        onChanged: (String? value) {
-                          // This is called when the user selects an item.
-                          setState(() {
-                            selectedValue = value!;
-                            _judul = value;
-                          });
-                        },
-                        isExpanded: true,
-                        items: snapshot.data!
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      );
-                    }
-                  },
-                ),
+              padding: const EdgeInsets.all(8.0),
+              child: FutureBuilder<List<String>>(
+                future: listProduct,
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<String>> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    return DropdownButton<String>(
+                      value: selectedValue,
+                      onChanged: (String? value) {
+                        // This is called when the user selects an item.
+                        setState(() {
+                          selectedValue = value!;
+                          _judul = value;
+                        });
+                      },
+                      isExpanded: true,
+                      items: snapshot.data!
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    );
+                  }
+                },
               ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(

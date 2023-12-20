@@ -45,15 +45,15 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
       ),
       drawer: const LeftDrawer(),
       body: Container(
-        // decoration: const BoxDecoration(
-        //   image: DecorationImage(
-        //     image: NetworkImage(
-        //         'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'),
-        //     fit: BoxFit.cover,
-        //   ),
-        // ),
-        child: SingleChildScrollView(
-          child: Form(
+          // decoration: const BoxDecoration(
+          //   image: DecorationImage(
+          //     image: NetworkImage(
+          //         'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'),
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
+          child: SingleChildScrollView(
+        child: Form(
             key: _formKey,
             child: SingleChildScrollView(
               child: Column(
@@ -252,10 +252,8 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
                   )
                 ],
               ),
-            )
-          ),
-        )
-      ),
+            )),
+      )),
     );
   }
 }

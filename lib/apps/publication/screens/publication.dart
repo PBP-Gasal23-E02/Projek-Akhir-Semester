@@ -6,8 +6,10 @@ class YourPublicationPage extends StatelessWidget {
   YourPublicationPage({Key? key}) : super(key: key);
 
   final List<PublicationItem> items = [
-    PublicationItem("Add New Publication", Icons.book_outlined, const Color.fromARGB(255, 252, 65, 51)),
-    PublicationItem("Your Publication", Icons.my_library_add_rounded, const Color.fromARGB(255, 34, 45, 130)),
+    PublicationItem("Add New Publication", Icons.book_outlined,
+        const Color.fromARGB(255, 252, 65, 51)),
+    PublicationItem("Your Publication", Icons.my_library_add_rounded,
+        const Color.fromARGB(255, 34, 45, 130)),
     PublicationItem("Back to Main Page", Icons.home, Colors.teal)
   ];
 

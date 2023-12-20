@@ -56,8 +56,8 @@ class ShopCard extends StatelessWidget {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const MyReviewPage()));
           } else if (item.name == "Back to Home") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => MyHomePage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MyHomePage()));
           }
         },
         child: Container(
