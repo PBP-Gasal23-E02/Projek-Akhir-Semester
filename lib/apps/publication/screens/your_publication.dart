@@ -16,7 +16,7 @@ class YourPublication extends StatefulWidget {
 class _YourPublicationState extends State<YourPublication> {
   // Function to fetch product data from the server
   Future<List<Buku>> fetchProduct() async {
-    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/get-buku-user/');
+    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/api/books/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
