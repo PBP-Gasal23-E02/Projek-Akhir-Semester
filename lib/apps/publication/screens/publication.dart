@@ -6,19 +6,18 @@ class YourPublicationPage extends StatelessWidget {
   YourPublicationPage({Key? key}) : super(key: key);
 
   final List<PublicationItem> items = [
-    PublicationItem("Add New Publication", Icons.book_outlined,
-        const Color.fromARGB(255, 252, 65, 51)),
-    PublicationItem("Your Publication", Icons.my_library_add_rounded,
-        const Color.fromARGB(255, 34, 45, 130)),
-    PublicationItem("Back to Main Page", Icons.home, Colors.teal)
+    PublicationItem("Add New Publication", Icons.book_outlined, const Color.fromARGB(255, 252, 65, 51)),
+    PublicationItem("Your Publication", Icons.my_library_add_rounded, const Color.fromARGB(255, 34, 45, 130)),
+    PublicationItem("Main Page", Icons.home, Colors.teal)
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 77, 249, 231),
       appBar: AppBar(
         title: const Text(
-          'Publication',
+          'Gourmet Labs',
         ),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
@@ -35,7 +34,7 @@ class YourPublicationPage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  'Kategori Buku Masak', // Text yang menandakan toko
+                  'Publication', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
