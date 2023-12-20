@@ -14,7 +14,7 @@ class YourPublicationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 77, 249, 231),
+      backgroundColor: const Color.fromARGB(255, 77, 249, 231),
       appBar: AppBar(
         title: const Text(
           'Gourmet Labs',
