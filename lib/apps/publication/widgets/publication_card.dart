@@ -46,6 +46,8 @@ class PublicationCard extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => const YourPublication(),
                 ));
+          } else if (item.name == "Back to Main Page") {
+            Navigator.pop(context);
           }
         },
         child: Container(
