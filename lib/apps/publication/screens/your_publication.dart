@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gourmet_labs/apps/publication/screens/new_publication.dart';
+import 'package:gourmet_labs/apps/publication/screens/publication.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:gourmet_labs/apps/YourBook/models/Buku.dart';
@@ -87,7 +88,8 @@ class _YourPublicationState extends State<YourPublication> {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.push(context, 
+                            MaterialPageRoute(builder: (context) => YourPublicationPage()));
                         }, 
                         child: const Text("Back to Menu"),
                       )
