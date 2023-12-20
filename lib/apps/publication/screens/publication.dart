@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gourmet_labs/apps/publication/widgets/publication_card.dart';
 import 'package:gourmet_labs/widgets/left_drawer.dart';
 
-class YourBookPage extends StatelessWidget {
-  YourBookPage({Key? key}) : super(key: key);
+class YourPublicationPage extends StatelessWidget {
+  YourPublicationPage({Key? key}) : super(key: key);
 
   final List<PublicationItem> items = [
-    PublicationItem("Add New Publication", Icons.book_outlined, Colors.red),
-    PublicationItem("Your Publication", Icons.my_library_add_rounded, Colors.blue),
+    PublicationItem("Add New Publication", Icons.book_outlined, const Color.fromARGB(255, 252, 65, 51)),
+    PublicationItem("Your Publication", Icons.my_library_add_rounded, const Color.fromARGB(255, 34, 45, 130)),
+    PublicationItem("Back to Main Page", Icons.home, Colors.teal)
   ];
 
   @override
@@ -15,7 +16,7 @@ class YourBookPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'YourBook',
+          'Publication',
         ),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
