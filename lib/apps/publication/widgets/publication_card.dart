@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // import 'package:gourmet_labs/apps/YourBook/screens/list_PinjamBuku.dart';
 import 'package:gourmet_labs/apps/publication/screens/new_publication.dart';
 import 'package:gourmet_labs/apps/publication/screens/your_publication.dart';
+import 'package:gourmet_labs/screens/menu.dart';
 // import 'package:gourmet_labs/apps/YourBook/screens/PinjamBukulist_form.dart';
 
 class PublicationItem {
@@ -28,10 +29,10 @@ class PublicationCard extends StatelessWidget {
         // Area responsive terhadap sentuhan
         onTap: () async {
           // Memunculkan SnackBar ketika diklik
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!")));
+          // ScaffoldMessenger.of(context)
+          //   ..hideCurrentSnackBar()
+          //   ..showSnackBar(SnackBar(
+          //       content: Text("Kamu telah menekan tombol ${item.name}!")));
 
           // Navigate ke route yang sesuai (tergantung jenis tombol)
           if (item.name == "Add New Publication") {
@@ -46,8 +47,12 @@ class PublicationCard extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => const YourPublication(),
                 ));
-          } else if (item.name == "Back to Main Page") {
-            Navigator.pop(context);
+          } else if (item.name == "Main Page") {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(),
+                ));
           }
         },
         child: Container(

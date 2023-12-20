@@ -3,9 +3,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:gourmet_labs/apps/publication/screens/your_publication.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:gourmet_labs/screens/menu.dart';
 import 'package:gourmet_labs/widgets/left_drawer.dart';
 import 'package:gourmet_labs/widgets/menu_card.dart';
 
@@ -33,6 +33,7 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 6, 238, 215),
       appBar: AppBar(
         title: const Text(
           'Add New Publication',
@@ -40,221 +41,242 @@ class _PublicationFormPageState extends State<PublicationFormPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 252, 65, 51),
+        backgroundColor: const Color.fromARGB(255, 34, 45, 130),
         foregroundColor: Colors.white,
       ),
       drawer: const LeftDrawer(),
-      body: Container(
-        // decoration: const BoxDecoration(
-        //   image: DecorationImage(
-        //     image: NetworkImage(
-        //         'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'),
-        //     fit: BoxFit.cover,
-        //   ),
-        // ),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Book Title",
+                          labelText: "Book Title",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0))),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _title = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Input is Invalid!";
+                        }
+                        return null;
+                      }),
+                ),
+                
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Author",
+                          labelText: "Author",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0))),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _author = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Input is Invalid!";
+                        }
+                        return null;
+                      }),
+                ),
+                
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Issued",
+                          labelText: "Issued",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0))),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _issued = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Input is Invalid!";
+                        }
+                        return null;
+                      }),
+                ),
+                
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Subjects",
+                          labelText: "Subjects",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0))),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _subjects = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Input is Invalid!";
+                        }
+                        return null;
+                      }),
+                ),
+                
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Language",
+                          labelText: "Language",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0))),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _language = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Input is Invalid!";
+                        }
+                        return null;
+                      }),
+                ),
+                
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Bookshelves",
+                          labelText: "Bookshelves",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0))),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _bookshelves = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Input is Invalid!";
+                        }
+                        return null;
+                      }),
+                ),
+                
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "LoCC",
+                          labelText: "LoCC",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0))),
+                      onChanged: (String? value) {
+                        setState(() {
+                          _locc = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Input is Invalid!";
+                        }
+                        return null;
+                      }),
+                ),
+                
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Book Title",
-                            labelText: "Book Title",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                        onChanged: (String? value) {
-                          setState(() {
-                            _title = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Input is Invalid!";
+                    child: ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            Color.fromARGB(255, 16, 107, 234)),
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          final response = await request.postJson(
+                              "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/publication/new-publication-flutter/",
+                              jsonEncode(<String, String>{
+                                'author': _author,
+                                'title': _title,
+                                'issued': _issued,
+                                'subjects': _subjects,
+                                'language': _language,
+                                'bookshelves': _bookshelves,
+                                'locc': _locc,
+                              }));
+                          if (response['status'] == 'success') {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("New item succesfully added!"),
+                            ));
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const YourPublication()),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text(
+                                  "There is an error, please try again."),
+                            ));
                           }
-                          return null;
-                        }),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Author",
-                            labelText: "Author",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                        onChanged: (String? value) {
-                          setState(() {
-                            _author = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Input is Invalid!";
-                          }
-                          return null;
-                        }),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Issued",
-                            labelText: "Issued",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                        onChanged: (String? value) {
-                          setState(() {
-                            _issued = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Input is Invalid!";
-                          }
-                          return null;
-                        }),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Subjects",
-                            labelText: "Subjects",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                        onChanged: (String? value) {
-                          setState(() {
-                            _subjects = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Input is Invalid!";
-                          }
-                          return null;
-                        }),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Language",
-                            labelText: "Language",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                        onChanged: (String? value) {
-                          setState(() {
-                            _language = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Input is Invalid!";
-                          }
-                          return null;
-                        }),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Bookshelves",
-                            labelText: "Bookshelves",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                        onChanged: (String? value) {
-                          setState(() {
-                            _bookshelves = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Input is Invalid!";
-                          }
-                          return null;
-                        }),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "LoCC",
-                            labelText: "LoCC",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                        onChanged: (String? value) {
-                          setState(() {
-                            _locc = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Input is Invalid!";
-                          }
-                          return null;
-                        }),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(
-                              Color.fromARGB(255, 248, 224, 104)),
-                        ),
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            final response = await request.postJson(
-                                "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/publication/new-publication-flutter/",
-                                jsonEncode(<String, String>{
-                                  'author': _author,
-                                  'title': _title,
-                                  'issued': _issued,
-                                  'subjects': _subjects,
-                                  'language': _language,
-                                  'bookshelves': _bookshelves,
-                                  'locc': _locc,
-                                }));
-                            if (response['status'] == 'success') {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text("New item succesfully added!"),
-                              ));
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MyHomePage()),
-                              );
-                            } else {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text(
-                                    "There is an error, please try again."),
-                              ));
-                            }
-                          }
-                        },
-                        child: const Text(
-                          "Save",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        }
+                      },
+                      child: const Text(
+                        "Save",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
+                  ),
+                ),
+                
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            Color.fromARGB(255, 246, 72, 72)),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        "Back",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ),
                   )
-                ],
-              ),
-            )
-          ),
-        )
+                )
+              ],
+            ),
+          )
+        ),
       ),
     );
   }
