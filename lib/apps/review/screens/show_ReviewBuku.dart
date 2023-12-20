@@ -4,8 +4,7 @@ import 'package:gourmet_labs/apps/review/models/ReviewBuku.dart';
 class DetailReviewPage extends StatelessWidget {
   final ReviewBuku review;
 
-  const DetailReviewPage({Key? key, required this.review})
-      : super(key: key);
+  const DetailReviewPage({Key? key, required this.review}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -73,7 +73,6 @@ class _LoginPageState extends State<LoginPage> {
 
                 final response = await request.login(
                     "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/auth/login/", {
-
                   'username': username,
                   'password': password,
                 });
