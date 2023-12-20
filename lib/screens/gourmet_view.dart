@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gourmet_labs/apps/YourBook/screens/list_PinjamBuku.dart';
 import 'package:gourmet_labs/apps/publication/screens/publication.dart';
 import 'package:gourmet_labs/screens/list_item.dart';
 import 'package:gourmet_labs/screens/menu.dart';
@@ -31,7 +32,7 @@ class ClickableNavigator extends StatelessWidget {
             context,
             Icons.shopping_basket,
             'Show Items',
-            const ProductPage(),
+            const BukuListPage(),
           ),
           _buildListItem(
             context,
