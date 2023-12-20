@@ -4,9 +4,9 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:gourmet_labs/screens/list_item.dart';
 import 'package:gourmet_labs/screens/login.dart';
 import 'package:gourmet_labs/screens/gourmet_view.dart';
+import 'package:gourmet_labs/apps/YourBook/screens/list_PinjamBuku.dart';
 
 class ShopItem {
   final String name;
@@ -47,9 +47,12 @@ class ShopCard extends StatelessWidget {
               MaterialPageRoute(
                   builder: (context) => const ClickableNavigator()),
             );
-          } else if (item.name == "Show Items") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ProductPage()));
+          } else if (item.name == "View Books") {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BukuListPage(),
+                ));
           } else if (item.name == "Logout") {
             final response = await request.logout(
                 "https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/auth/logout/");

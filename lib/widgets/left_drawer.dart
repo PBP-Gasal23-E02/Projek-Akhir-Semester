@@ -44,7 +44,6 @@ class LeftDrawer extends StatelessWidget {
               ],
             ),
           ),
-
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title: const Text('Main Page'),
@@ -56,7 +55,6 @@ class LeftDrawer extends StatelessWidget {
                   ));
             },
           ),
-
           ListTile(
             leading: const Icon(Icons.shopping_basket),
             title: const Text('Show Items'),
@@ -67,7 +65,6 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
-
           ListTile(
             leading: const Icon(Icons.book_sharp),
             title: const Text('Publication'),
@@ -78,7 +75,6 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
-
           ListTile(
             leading: const Icon(Icons.playlist_add_circle),
             title: const Text('Review'),
@@ -89,7 +85,6 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
-
           ListTile(
             leading: const Icon(Icons.star),
             title: const Text('Wishlist'),
@@ -100,7 +95,6 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
-
           ListTile(
             leading: const Icon(Icons.book_online_rounded),
             title: const Text('Yourbook'),
@@ -111,7 +105,6 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
-
           ListTile(
             leading: const Icon(Icons.bookmark_add),
             title: const Text('Bookmark'),

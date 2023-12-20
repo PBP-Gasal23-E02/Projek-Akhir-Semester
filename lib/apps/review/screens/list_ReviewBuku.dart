@@ -6,16 +6,17 @@ import 'package:gourmet_labs/apps/review/screens/show_ReviewBuku.dart';
 import 'package:gourmet_labs/apps/review/widgets/leftDrawer_review.dart';
 
 class MyReviewPage extends StatefulWidget {
-    const MyReviewPage({Key? key}) : super(key: key);
+  const MyReviewPage({Key? key}) : super(key: key);
 
-    @override
-    _MyReviewPageState createState() => _MyReviewPageState();
+  @override
+  _MyReviewPageState createState() => _MyReviewPageState();
 }
 
 class _MyReviewPageState extends State<MyReviewPage> {
   // Function to fetch product data from the server
   Future<List<ReviewBuku>> fetchProduct() async {
-    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/review/json/');
+    var url =
+        Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/review/json/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},

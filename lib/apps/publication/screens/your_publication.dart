@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gourmet_labs/apps/publication/screens/new_publication.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +15,8 @@ class YourPublication extends StatefulWidget {
 class _YourPublicationState extends State<YourPublication> {
   // Function to fetch product data from the server
   Future<List<Buku>> fetchProduct() async {
-    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/api/books/');
+    var url =
+        Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/api/books/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -66,114 +66,123 @@ class _YourPublicationState extends State<YourPublication> {
             } else {
               // Building a ListView to display the fetched product items
               return ListView.builder(
-                itemCount: snapshot.data!.length + 1,
-                itemBuilder: (_, index) {
-                  if (index == snapshot.data!.length) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(context, 
-                          MaterialPageRoute(builder: (context) => const PublicationFormPage()));
-                      }, 
-                      child: const Text("Add New Publication"),
-                    );
-                  }
-                  else {
-                    return Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context, 
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text("${snapshot.data![index].fields.title}"),
-                                  content: Container(
-                                    // decoration: const BoxDecoration(
-                                    //   image: DecorationImage(
-                                    //     image: NetworkImage(
-                                    //       'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'
-                                    //     ),
-                                    //     fit: BoxFit.cover,
-                                    //   )
-                                    // ),
-                                    child: SingleChildScrollView(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Author: ${snapshot.data![index].fields.authors}",
-                                            style: const TextStyle(color: Colors.black),
+                  itemCount: snapshot.data!.length + 1,
+                  itemBuilder: (_, index) {
+                    if (index == snapshot.data!.length) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PublicationFormPage()));
+                        },
+                        child: const Text("Add New Publication"),
+                      );
+                    } else {
+                      return Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                          "${snapshot.data![index].fields.title}"),
+                                      content: Container(
+                                        // decoration: const BoxDecoration(
+                                        //   image: DecorationImage(
+                                        //     image: NetworkImage(
+                                        //       'https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg'
+                                        //     ),
+                                        //     fit: BoxFit.cover,
+                                        //   )
+                                        // ),
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Author: ${snapshot.data![index].fields.authors}",
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                "Issued: ${snapshot.data![index].fields.issued}",
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                "Subjects: ${snapshot.data![index].fields.subjects}",
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                "Language: ${snapshot.data![index].fields.language}",
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                "Bookshelves: ${snapshot.data![index].fields.bookshelves}",
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                "LoCc: ${snapshot.data![index].fields.loCc}",
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ],
                                           ),
-                                          Text(
-                                            "Issued: ${snapshot.data![index].fields.issued}",
-                                            style: const TextStyle(color: Colors.black),
-                                          ),
-                                          Text(
-                                            "Subjects: ${snapshot.data![index].fields.subjects}",
-                                            style: const TextStyle(color: Colors.black),
-                                          ),
-                                          Text(
-                                            "Language: ${snapshot.data![index].fields.language}",
-                                            style: const TextStyle(color: Colors.black),
-                                          ),
-                                          Text(
-                                            "Bookshelves: ${snapshot.data![index].fields.bookshelves}",
-                                            style: const TextStyle(color: Colors.black),
-                                          ),
-                                          Text(
-                                            "LoCc: ${snapshot.data![index].fields.loCc}",
-                                            style: const TextStyle(color: Colors.black),
-                                          ),
-                                        ],
+                                        ),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            style: TextButton.styleFrom(
+                                                backgroundColor:
+                                                    Colors.red[600]),
+                                            child: const Text(
+                                              "Close",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ))
+                                      ],
+                                    );
+                                  });
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 12),
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Displaying the product name with specified style
+                                    Text(
+                                      "${snapshot.data![index].fields.title}",
+                                      style: const TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      }, 
-                                      style: TextButton.styleFrom(
-                                        backgroundColor: Colors.red[600]
-                                      ),
-                                      child: const Text(
-                                        "Close",
-                                        style: TextStyle(color: Colors.white),
-                                      )
-                                    )
-                                  ],
-                                );
-                              }
-                            );
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Displaying the product name with specified style
-                                Text(
-                                  "${snapshot.data![index].fields.title}",
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Text("by ${snapshot.data![index].fields.authors} -${snapshot.data![index].fields.language}")
-                              ]
+                                    const SizedBox(height: 10),
+                                    Text(
+                                        "by ${snapshot.data![index].fields.authors} -${snapshot.data![index].fields.language}")
+                                  ]),
                             ),
                           ),
-                        ),
-                        if (index < snapshot.data!.length - 1) const Divider(),
-                      ],
-                    );
-                  }
-                }
-              );
+                          if (index < snapshot.data!.length - 1)
+                            const Divider(),
+                        ],
+                      );
+                    }
+                  });
             }
           }
         },

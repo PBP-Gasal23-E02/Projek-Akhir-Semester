@@ -13,7 +13,8 @@ class BukuListPage extends StatefulWidget {
 class _BukuListPageState extends State<BukuListPage> {
   Future<List<Buku>> fetchProduct2() async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-    var url = Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/api/books/');
+    var url =
+        Uri.parse('https://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/api/books/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
